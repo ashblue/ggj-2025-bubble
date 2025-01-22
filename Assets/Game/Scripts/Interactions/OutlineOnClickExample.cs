@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace GameJammers.GGJ2025.GodMode {
     public class OutlineOnClickExample : InteractableObjectBase {
-        private Outline _outline = default!;
+        Outline _outline = default!;
 
-        private void Awake() {
+        void Awake() {
             if (TryGetComponent(out Outline res)) {
                 _outline = res;
                 _outline.enabled = false;
