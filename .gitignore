@@ -71,3 +71,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Probuilder settings files. Are these safe to ignore??? https://discussions.unity.com/t/probuilder-settings-and-git/757804/6
+# ProjectSettings/Packages/com.unity.probuilder/Settings.json
