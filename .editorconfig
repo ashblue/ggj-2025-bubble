@@ -1,5 +1,5 @@
 [*.{cs,vb}] 
 
 csharp_new_line_before_open_brace = none
-
+csharp_space_between_method_declaration_name_and_open_parenthesis = true
 dotnet_style_require_accessibility_modifiers = omit_if_default:suggestion

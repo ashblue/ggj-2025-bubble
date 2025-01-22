@@ -19,9 +19,9 @@ namespace GameJammers.GGJ2025.Cameras {
         public float YMin => _position.y - _size.y / 2;
         public float YMax => _position.y + _size.y / 2;
 
-        public CameraBounds() { }
+        public CameraBounds () { }
 
-        public CameraBounds(float x, float y, float width, float height) {
+        public CameraBounds (float x, float y, float width, float height) {
             _size = new Vector2(width, height);
         }
     }

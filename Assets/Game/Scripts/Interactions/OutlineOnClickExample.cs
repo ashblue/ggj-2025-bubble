@@ -8,7 +8,7 @@ namespace GameJammers.GGJ2025.OutlineExample {
     public class OutlineOnClickExample : InteractableObjectBase {
         Outline _outline = default!;
 
-        void Awake() {
+        void Awake () {
             if (TryGetComponent(out Outline res)) {
                 _outline = res;
                 _outline.enabled = false;
@@ -19,7 +19,7 @@ namespace GameJammers.GGJ2025.OutlineExample {
             }
         }
 
-        protected override void OnPipInteract() {
+        protected override void OnPipInteract () {
             _outline.enabled = !_outline.enabled;
         }
     }
