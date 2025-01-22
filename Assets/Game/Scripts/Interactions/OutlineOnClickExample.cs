@@ -1,9 +1,10 @@
 using ChrisNolet.QuickOutline;
+using GameJammers.GGJ2025.GodMode;
 using UnityEngine;
 
 #nullable enable
 
-namespace GameJammers.GGJ2025.GodMode {
+namespace GameJammers.GGJ2025.OutlineExample {
     public class OutlineOnClickExample : InteractableObjectBase {
         Outline _outline = default!;
 
