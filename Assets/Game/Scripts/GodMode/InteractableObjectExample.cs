@@ -5,7 +5,7 @@ namespace GameJammers.GGJ2025.GodMode {
         protected override void OnPipInteract () {
             Debug.Log("Interacted with " + name);
         }
-        
+
         protected override void OnPipHover () {
             Debug.Log("Hovered over " + name);
         }

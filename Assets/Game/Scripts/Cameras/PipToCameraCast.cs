@@ -15,11 +15,11 @@ namespace GameJammers.GGJ2025.Cameras {
         [Tooltip("Optimize initial clicks by setting a specific layer for the main camera casts")]
         [SerializeField]
         LayerMask _cameraMainLayer;
-        
+
         [Tooltip("The camera our texture is rendering from. Leave empty to auto populate with the first camera found on the layer")]
         [SerializeField]
         Camera _cameraPip;
-        
+
         [Tooltip("Set a specific layer for the pip camera casts for performance and correctness")]
         [SerializeField]
         LayerMask _cameraPipLayer;
@@ -27,7 +27,7 @@ namespace GameJammers.GGJ2025.Cameras {
         void Start () {
             StartCoroutine(InitLoop());
         }
-        
+
         IEnumerator InitLoop () {
             // We don't have a pip camera, so we'll have to find one async before fully activating
             while (!_cameraPip) {
@@ -41,7 +41,7 @@ namespace GameJammers.GGJ2025.Cameras {
 
                 yield return null;
             }
-            
+
             Bind();
         }
 
@@ -63,7 +63,7 @@ namespace GameJammers.GGJ2025.Cameras {
             var target = GetObjectFromPip(Input.mousePosition);
             target?.PipInteract();
         }
-        
+
         void OnHover (InputAction.CallbackContext ctx) {
             var target = GetObjectFromPip(Input.mousePosition);
             target?.PipHover();
@@ -74,12 +74,12 @@ namespace GameJammers.GGJ2025.Cameras {
             var ray = _cameraMain.ScreenPointToRay(mousePosition);
             if (!Physics.Raycast(ray, out var hit, Mathf.Infinity, _cameraMainLayer)) return null;
             if (hit.collider.gameObject != gameObject) return null;
-            
+
             // Get the exact click position on the texture
             var textureCoord = hit.textureCoord;
             var viewportPoint = new Vector3(textureCoord.x, textureCoord.y, 0);
             var renderRay = _cameraPip.ViewportPointToRay(viewportPoint);
-            
+
             // Cast a ray from the camera to the pip world
             if (!Physics.Raycast(renderRay, out var renderHit, Mathf.Infinity, _cameraPipLayer)) return null;
             return renderHit.collider.gameObject.GetComponent<IInteractableObject>();
