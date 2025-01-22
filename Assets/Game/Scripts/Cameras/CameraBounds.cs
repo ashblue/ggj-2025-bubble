@@ -1,11 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GameJammers.GGJ2025.Cameras
-{
+namespace GameJammers.GGJ2025.Cameras {
     [Serializable]
-    public class CameraBounds
-    {
+    public class CameraBounds {
         [SerializeField]
         Vector2 _position;
 
@@ -23,8 +21,7 @@ namespace GameJammers.GGJ2025.Cameras
 
         public CameraBounds() { }
 
-        public CameraBounds(float x, float y, float width, float height)
-        {
+        public CameraBounds(float x, float y, float width, float height) {
             _size = new Vector2(width, height);
         }
     }

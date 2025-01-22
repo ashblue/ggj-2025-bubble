@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace GameJammers.GGJ2025.Cameras
-{
-    public class GodViewCamera : MonoBehaviour
-    {
+namespace GameJammers.GGJ2025.Cameras {
+    public class GodViewCamera : MonoBehaviour {
         InputAction _moveAction;
 
         [Tooltip("An absolute positioned camera boundary that limits camera movement. Position marks the CENTER of the rectangle.")]
@@ -15,13 +13,11 @@ namespace GameJammers.GGJ2025.Cameras
         [SerializeField]
         float _moveSpeed = 15f;
 
-        void Awake()
-        {
+        void Awake() {
             _moveAction = InputSystem.actions.FindAction("Move");
         }
 
-        void Update()
-        {
+        void Update() {
             var move = _moveAction.ReadValue<Vector2>();
             var rotationAngle = transform.rotation.eulerAngles.y;
 
@@ -35,8 +31,7 @@ namespace GameJammers.GGJ2025.Cameras
             transform.position = position;
         }
 
-        void OnDrawGizmosSelected()
-        {
+        void OnDrawGizmosSelected() {
             Gizmos.color = Color.green;
 
             // Draw center

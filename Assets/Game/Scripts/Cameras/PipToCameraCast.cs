@@ -2,10 +2,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace GameJammers.GGJ2025.Cameras
-{
-    public class PipToCameraCast : MonoBehaviour
-    {
+namespace GameJammers.GGJ2025.Cameras {
+    public class PipToCameraCast : MonoBehaviour {
         InputAction _clickAction;
         InputAction _pointAction;
 
@@ -25,8 +23,7 @@ namespace GameJammers.GGJ2025.Cameras
         [SerializeField]
         LayerMask _cameraPipLayer;
 
-        void Awake()
-        {
+        void Awake() {
             _clickAction = InputSystem.actions.FindAction("Click");
             _clickAction.performed += OnClick;
 
@@ -34,27 +31,23 @@ namespace GameJammers.GGJ2025.Cameras
             _pointAction.performed += OnHover;
         }
 
-        void OnDestroy()
-        {
+        void OnDestroy() {
             _clickAction.performed -= OnClick;
             _pointAction.performed -= OnHover;
         }
 
-        void OnClick(InputAction.CallbackContext ctx)
-        {
+        void OnClick(InputAction.CallbackContext ctx) {
             if (!Mouse.current.leftButton.wasPressedThisFrame) return;
             var target = GetObjectFromPip(Input.mousePosition);
             target?.PipInteract();
         }
 
-        void OnHover(InputAction.CallbackContext ctx)
-        {
+        void OnHover(InputAction.CallbackContext ctx) {
             var target = GetObjectFromPip(Input.mousePosition);
             target?.PipHover();
         }
 
-        IInteractableObject GetObjectFromPip(Vector3 mousePosition)
-        {
+        IInteractableObject GetObjectFromPip(Vector3 mousePosition) {
             // Confirm a click was made to this object
             var ray = _cameraMain.ScreenPointToRay(mousePosition);
             if (!Physics.Raycast(ray, out var hit, Mathf.Infinity, _cameraMainLayer)) return null;

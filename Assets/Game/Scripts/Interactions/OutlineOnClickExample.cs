@@ -1,30 +1,24 @@
-using UnityEngine;
 using ChrisNolet.QuickOutline;
+using UnityEngine;
 
 #nullable enable
 
-namespace GameJammers.GGJ2025.GodMode
-{
-    public class OutlineOnClickExample : InteractableObjectBase
-    {
+namespace GameJammers.GGJ2025.GodMode {
+    public class OutlineOnClickExample : InteractableObjectBase {
         private Outline _outline = default!;
 
-        private void Awake()
-        {
-            if (TryGetComponent(out Outline res))
-            {
+        private void Awake() {
+            if (TryGetComponent(out Outline res)) {
                 _outline = res;
                 _outline.enabled = false;
             }
-            else
-            {
+            else {
                 Debug.LogWarning("Can't find Outline Component. Disabling");
                 gameObject.SetActive(false);
             }
         }
 
-        protected override void OnPipInteract()
-        {
+        protected override void OnPipInteract() {
             _outline.enabled = !_outline.enabled;
         }
     }
