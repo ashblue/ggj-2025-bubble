@@ -74,3 +74,6 @@ crashlytics-build.properties
 
 # IDEs
 .vsconfig
+
+# Probuilder settings files. Are these safe to ignore??? https://discussions.unity.com/t/probuilder-settings-and-git/757804/6
+# ProjectSettings/Packages/com.unity.probuilder/Settings.json

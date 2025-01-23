@@ -1,4 +1,5 @@
-﻿using GameJammers.GGJ2025.GodMode;
+﻿using System.Collections;
+using GameJammers.GGJ2025.GodMode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,7 +16,7 @@ namespace GameJammers.GGJ2025.Cameras {
         [SerializeField]
         LayerMask _cameraMainLayer;
 
-        [Tooltip("The camera our texture is rendering from")]
+        [Tooltip("The camera our texture is rendering from. Leave empty to auto populate with the first camera found on the layer")]
         [SerializeField]
         Camera _cameraPip;
 
@@ -23,7 +24,28 @@ namespace GameJammers.GGJ2025.Cameras {
         [SerializeField]
         LayerMask _cameraPipLayer;
 
-        void Awake () {
+        void Start () {
+            StartCoroutine(InitLoop());
+        }
+
+        IEnumerator InitLoop () {
+            // We don't have a pip camera, so we'll have to find one async before fully activating
+            while (!_cameraPip) {
+                var cameras = FindObjectsByType<Camera>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+                foreach (var cam in cameras) {
+                    // Check if the camera has an overlapping layer with the pip camera layers
+                    if (_cameraPipLayer != (_cameraPipLayer | (1 << cam.gameObject.layer))) continue;
+                    _cameraPip = cam;
+                    break;
+                }
+
+                yield return null;
+            }
+
+            Bind();
+        }
+
+        void Bind () {
             _clickAction = InputSystem.actions.FindAction("Click");
             _clickAction.performed += OnClick;
 
