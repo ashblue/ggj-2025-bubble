@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GameJammers.GGJ2025.Cameras;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,11 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         static CursorInteractController _instance;
         public static CursorInteractController Instance => _instance;
 
+        readonly List<FloppyDisk> _disks = new();
+        State _state = State.HandEmpty;
+        GameObject _roomDisk;
+        GameObject _computerPreview;
+
         [SerializeField]
         Camera _roomCamera;
 
@@ -15,15 +21,14 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         [SerializeField]
         float _cursorWorldZLock = 0.3f;
 
+        [SerializeField]
+        PipToCameraCast _pipToCamera;
+
         enum State {
             HandEmpty,
             HoldingDiskRoom,
             HoldingDiskComputer,
         }
-
-        readonly List<FloppyDisk> _disks = new();
-        State _state = State.HandEmpty;
-        GameObject _roomDisk;
 
         void Awake () {
             if (_instance) {
@@ -52,27 +57,49 @@ namespace GameJammers.GGJ2025.FloppyDisks {
             if (_state != State.HandEmpty) return;
 
             // Enter follow cursor room state
-            StartCoroutine(HoldingDiskRoomLoop(disk));
+            StartCoroutine(HoldingDiskLoop(disk));
         }
 
-        IEnumerator HoldingDiskRoomLoop (FloppyDisk disk) {
-            _roomDisk = Instantiate(disk.RoomPrefab);
+        IEnumerator HoldingDiskLoop (FloppyDisk disk) {
             _state = State.HoldingDiskRoom;
 
-            while (_state == State.HoldingDiskRoom) {
+            _roomDisk = Instantiate(disk.RoomPrefab);
+            _computerPreview = Instantiate(disk.ComputerPreviewPrefab);
+            _computerPreview.SetActive(false);
+
+            while (_state != State.HandEmpty) {
                 var mousePos = Mouse.current.position.ReadValue();
                 var worldPos = _roomCamera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, _cursorWorldZLock));
                 _roomDisk.transform.position = worldPos;
 
+                // Handle canceling the disk placement
                 if (Mouse.current.rightButton.wasPressedThisFrame) {
                     Destroy(_roomDisk);
+                    Destroy(_computerPreview);
                     _state = State.HandEmpty;
                     yield break;
                 }
 
-                // @TODO Detect we are over the computer screen
-                // Move to HoldingDiskComputerLoop state
-                // Remove the room disk, and create the computer disk in world
+                // @NOTE Not the prettiest things I've written, but it runs fine...
+                // Detect we are over the computer screen
+                if (_pipToCamera.IsMouseHover) {
+                    _roomDisk.SetActive(false);
+                    _computerPreview.SetActive(false);
+
+                    // Put the placement prefab in the world
+                    if (_pipToCamera.HasPipWorldPosition) {
+                        var target = _pipToCamera.LastPipRay.collider.gameObject;
+
+                        // Only target ground so we know it's safe to place the prefab there
+                        if (target.layer == LayerMask.NameToLayer("Ground")) {
+                            _computerPreview.SetActive(true);
+                            _computerPreview.transform.position = _pipToCamera.LastPipRay.point;
+                        }
+                    }
+                } else {
+                    _roomDisk.SetActive(true);
+                    _computerPreview.SetActive(false);
+                }
 
                 yield return null;
             }
