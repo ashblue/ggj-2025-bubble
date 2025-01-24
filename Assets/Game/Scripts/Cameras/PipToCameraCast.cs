@@ -87,8 +87,8 @@ namespace GameJammers.GGJ2025.Cameras {
             var viewportPoint = new Vector3(textureCoord.x, textureCoord.y, 0);
             var renderRay = _cameraPip.ViewportPointToRay(viewportPoint);
 
-            // Cast a ray from the camera to the pip world
-            if (!Physics.Raycast(renderRay, out var renderHit, Mathf.Infinity, _cameraPipLayer)) {
+            // Cast a ray from the camera to the pip world for physical surfaces
+            if (!Physics.Raycast(renderRay, out var renderHit, Mathf.Infinity, _cameraPipLayer, QueryTriggerInteraction.Ignore)) {
                 return (null, true);
             }
 

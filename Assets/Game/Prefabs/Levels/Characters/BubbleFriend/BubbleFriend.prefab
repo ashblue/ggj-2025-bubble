@@ -34211,7 +34211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0320900540fb4fe6a8a9be4e40e5703c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trackedObjects: []
 --- !u!114 &8476698265092921531
 MonoBehaviour:
   m_ObjectHideFlags: 0

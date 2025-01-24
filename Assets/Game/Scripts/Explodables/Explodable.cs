@@ -15,7 +15,7 @@ namespace GameJammers.GGJ2025.Explodables {
         [SerializeField]
         bool _isObjective;
 
-        [Tooltip("You can use any explosion shape you want. The trigger area just needs to have a TriggerTracker on it.")]
+        [Tooltip("You can use any explosion shape you want. The trigger area just needs to have a TriggerExplodableTracker on it.")]
         [SerializeField]
         TriggerExplodableTracker _explosionTrigger;
 
