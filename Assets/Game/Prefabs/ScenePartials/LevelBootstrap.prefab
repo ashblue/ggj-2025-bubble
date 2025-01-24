@@ -761,8 +761,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bounds:
-    _position: {x: -9.38, y: -7.93}
-    _size: {x: 50, y: 50}
+    _position: {x: -16.3, y: -7.93}
+    _size: {x: 20, y: 20}
   _moveSpeed: 15
 --- !u!1 &8424286969718621982
 GameObject:
