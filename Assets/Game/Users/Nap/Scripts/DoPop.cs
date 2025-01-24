@@ -1,21 +1,24 @@
 using GameJammers.GGJ2025.Bubble;
 using UnityEngine;
 
-public class DoPop : MonoBehaviour
-{
-    Poppable thisPoppable;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+namespace GameJammers.GGJ2025.Bubble{
+    public class DoPop : MonoBehaviour
     {
-        thisPoppable = GetComponent<Poppable>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        Poppable thisPoppable;
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
         {
-            PopManager.Instance.AddPopToQueue(thisPoppable);
+            thisPoppable = GetComponent<Poppable>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                PopManager.Instance.AddPopToQueue(thisPoppable);
+            }
         }
     }
 }
+
