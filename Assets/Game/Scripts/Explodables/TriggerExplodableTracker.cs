@@ -8,14 +8,14 @@ namespace GameJammers.GGJ2025.Explodables {
         public IReadOnlyList<Explodable> TrackedObjects => _trackedObjects;
 
         void OnTriggerEnter (Collider other) {
-            var explodable = other.GetComponent<Explodable>();
+            var explodable = other.gameObject.GetComponent<Explodable>();
             if (explodable) {
                 _trackedObjects.Add(explodable);
             }
         }
 
         void OnTriggerExit (Collider other) {
-            var explodable = other.GetComponent<Explodable>();
+            var explodable = other.gameObject.GetComponent<Explodable>();
             if (explodable) {
                 _trackedObjects.Remove(explodable);
             }

@@ -28,10 +28,7 @@ namespace GameJammers.GGJ2025.Explodables {
         GameObject _explosionGraphic;
 
         [SerializeField]
-        float _explosionDuration = 1f;
-
-        [SerializeField]
-        Ease _explosionEase = Ease.OutBounce;
+        float _explosionDuration = 0.5f;
 
         public bool IsPrimer => _isPrimer;
         public bool IsObjective => _isObjective;
@@ -68,7 +65,7 @@ namespace GameJammers.GGJ2025.Explodables {
             var tween = _explosionGraphic.transform
                 .DOScale(targetScale, _explosionDuration)
                 .SetLoops(2, LoopType.Yoyo)
-                .SetEase(_explosionEase);
+                .SetEase(Ease.OutQuad);
 
             // Animation ends (or at least height of explosion where next explosions should trigger)
             yield return tween.WaitForCompletion();
