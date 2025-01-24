@@ -27,5 +27,5 @@
 *.anim filter=lfs diff=lfs merge=lfs -text
 *.prefab filter=lfs diff=lfs merge=lfs -text
 LightingData.asset filter=lfs diff=lfs merge=lfs -text
-*.asset filter=lfs diff=lfs merge=lfs -text
+*.asset merge=unityyamlmerge eol=lf
 *.shadergraph filter=lfs diff=lfs merge=lfs -text
