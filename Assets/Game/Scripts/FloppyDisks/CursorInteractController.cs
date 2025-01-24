@@ -101,6 +101,11 @@ namespace GameJammers.GGJ2025.FloppyDisks {
                     _computerPreview.SetActive(false);
                 }
 
+                if (Mouse.current.leftButton.wasPressedThisFrame && _computerPreview.activeSelf) {
+                    var position = _computerPreview.transform.position;
+                    Instantiate(disk.ComputerPrefab, position, Quaternion.identity);
+                }
+
                 yield return null;
             }
         }

@@ -19,6 +19,8 @@ namespace GameJammers.GGJ2025.FloppyDisks {
 
         public GameObject RoomPrefab => _roomPrefab;
         public GameObject ComputerPreviewPrefab => _computerPreviewPrefab;
+
+        [Tooltip("Note all spawned world items are manually rotated to face the camera, hopefully this doesn't cause any issues")]
         public GameObject ComputerPrefab => _computerPrefab;
 
         void Start () {
