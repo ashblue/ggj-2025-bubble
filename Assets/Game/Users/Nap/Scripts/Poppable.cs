@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace GameJammers.GGJ2025.Bubble
@@ -12,8 +13,7 @@ namespace GameJammers.GGJ2025.Bubble
     {
         [SerializeField] private GameObject BubbleTop;
         [SerializeField] private GameObject BubbleBottom;
-        [SerializeField] private GameObject BubbleLeftArm;
-        [SerializeField] private GameObject BubbleRightArm;
+        [FormerlySerializedAs("BubbleLeftArm")] [SerializeField] private GameObject BubbleArms;
         [SerializeField] private GameObject Body;
         [SerializeField] private GameObject DistortionArea;
 
@@ -25,7 +25,7 @@ namespace GameJammers.GGJ2025.Bubble
 
         private Material BubbleTopMat;
         private Material BubbleBottomMat;
-        private Material BubbleLeftArmMat;
+        private Material BubbleArmsMat;
         private Material BubbleRightArmMat;
         private Material DistortionAreaMat;
 
@@ -41,8 +41,7 @@ namespace GameJammers.GGJ2025.Bubble
             bodyRbody = Body.GetComponent<Rigidbody>();
             BubbleTopMat = BubbleTop.GetComponent<Renderer>().material;
             BubbleBottomMat = BubbleBottom.GetComponent<Renderer>().material;
-            BubbleLeftArmMat = BubbleLeftArm.GetComponent<Renderer>().material;
-            BubbleRightArmMat = BubbleRightArm.GetComponent<Renderer>().material;
+            BubbleArmsMat = BubbleArms.GetComponent<Renderer>().material;
             DistortionAreaMat = DistortionArea.GetComponent<Renderer>().material;
 
             popSphereCollider = GetComponent<SphereCollider>();
@@ -58,20 +57,18 @@ namespace GameJammers.GGJ2025.Bubble
 
         public void Pop()
         {
-
             popSequence = DOTween.Sequence();
             float popDuration = 0.5f;
             float popStart = popDuration * 0.5f;
             popSequence.Insert(popStart, BubbleTopMat.DOFloat(1, "_PopStep", popDuration));
             popSequence.Insert(popStart, BubbleBottomMat.DOFloat(1, "_PopStep", popDuration));
-            popSequence.Insert(popStart, BubbleLeftArmMat.DOFloat(1, "_PopStep", popDuration));
+            popSequence.Insert(popStart, BubbleArmsMat.DOFloat(1, "_PopStep", popDuration));
             popSequence.Insert(popStart, BubbleRightArmMat.DOFloat(1, "_PopStep", popDuration));
 
             float disableTime = popStart + popDuration * 0.5f;
             popSequence.InsertCallback(popStart + popDuration, () =>  BubbleTop.gameObject.SetActive(false));
             popSequence.InsertCallback(popStart + popDuration, () =>  BubbleBottom.gameObject.SetActive(false));
-            popSequence.InsertCallback(popStart + popDuration, () =>  BubbleLeftArm.gameObject.SetActive(false));
-            popSequence.InsertCallback(popStart + popDuration, () =>  BubbleRightArm.gameObject.SetActive(false));
+            popSequence.InsertCallback(popStart + popDuration, () =>  BubbleArms.gameObject.SetActive(false));
 
             float distortDuration = popDuration * 0.5f;
             float distortStart = popStart * 1.5f;
