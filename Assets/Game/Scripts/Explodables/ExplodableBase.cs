@@ -8,7 +8,7 @@ namespace GameJammers.GGJ2025.Explodables {
 
         [Tooltip("Should this immediately explode when the red button is pressed?")]
         [SerializeField]
-        bool _isPrimer;
+        bool _autoExplode;
 
         [Tooltip("Is this explodable an objective that must be destroyed in order to beat the level?")]
         [SerializeField]
@@ -18,7 +18,7 @@ namespace GameJammers.GGJ2025.Explodables {
         [SerializeField]
         TriggerExplodableTracker _explosionTrigger;
 
-        public bool IsPrimer => _isPrimer;
+        public bool AutoExplode => _autoExplode;
         public bool IsObjective => _isObjective;
         public bool IsPrimed { get; private set; }
 

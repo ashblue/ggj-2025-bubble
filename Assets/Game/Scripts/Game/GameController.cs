@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using GameJammers.GGJ2025.Explodables;
+using GameJammers.GGJ2025.FloppyDisks;
 using GameJammers.GGJ2025.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
@@ -52,11 +53,12 @@ namespace GameJammers.GGJ2025.Bootstraps {
         public UnityEvent EventGameComplete => _eventGameComplete;
         public GameState State { get; private set; }
         public ExplodableCollection Explodables { get; } = new();
+        public RamController Ram { get; } = new();
 
         void Awake () {
             Instance = this;
             _loadingScreen.gameObject.SetActive(true);
-            _exploder.Setup(this, Explodables, this);
+            _exploder = new ExplodeController(this, Explodables, this);
         }
 
         void OnDestroy () {
@@ -163,6 +165,11 @@ namespace GameJammers.GGJ2025.Bootstraps {
             ShowLoadingScreen();
             yield return StartCoroutine(LoadLevelLoop(path));
             HideLoadingScreen();
+
+            // Reset the game state
+            SetState(GameState.Placement);
+            CursorInteractController.Instance.Reset();
+            Ram.Reset();
         }
 
         void ShowLoadingScreen () {
@@ -178,6 +185,10 @@ namespace GameJammers.GGJ2025.Bootstraps {
 
         public void SetState (GameState state) {
             State = state;
+        }
+
+        public void RestartLevel () {
+            StartCoroutine(LoadNextLevelLoop(_currentLevelPath));
         }
     }
 }

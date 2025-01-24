@@ -126,7 +126,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
             _state = State.Lock;
         }
 
-        public void Unlock () {
+        public void Reset () {
             _state = State.HandEmpty;
         }
     }
