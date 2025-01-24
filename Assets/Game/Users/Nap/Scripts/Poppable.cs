@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
@@ -20,8 +21,8 @@ namespace GameJammers.GGJ2025.Bubble
         public float PopRadius = 5f;
         public float popDelay = 0.05f;
         public LayerMask PoppableLayerMask;
-        
-        
+
+
         private Material BubbleTopMat;
         private Material BubbleBottomMat;
         private Material BubbleLeftArmMat;
@@ -43,21 +44,21 @@ namespace GameJammers.GGJ2025.Bubble
             BubbleLeftArmMat = BubbleLeftArm.GetComponent<Renderer>().material;
             BubbleRightArmMat = BubbleRightArm.GetComponent<Renderer>().material;
             DistortionAreaMat = DistortionArea.GetComponent<Renderer>().material;
-            
+
             popSphereCollider = GetComponent<SphereCollider>();
-            
+
             //popSequence = DOTween.Sequence();
         }
 
         // Update is called once per frame
         void Update()
         {
-            
+
         }
 
         public void Pop()
         {
-            
+
             popSequence = DOTween.Sequence();
             float popDuration = 0.5f;
             float popStart = popDuration * 0.5f;
@@ -71,7 +72,7 @@ namespace GameJammers.GGJ2025.Bubble
             popSequence.InsertCallback(popStart + popDuration, () =>  BubbleBottom.gameObject.SetActive(false));
             popSequence.InsertCallback(popStart + popDuration, () =>  BubbleLeftArm.gameObject.SetActive(false));
             popSequence.InsertCallback(popStart + popDuration, () =>  BubbleRightArm.gameObject.SetActive(false));
-            
+
             float distortDuration = popDuration * 0.5f;
             float distortStart = popStart * 1.5f;
             popSequence.InsertCallback(distortStart, () => DistortionArea.SetActive(true));
@@ -80,19 +81,24 @@ namespace GameJammers.GGJ2025.Bubble
             popSequence.InsertCallback(disableTime, BodyPhysics);
             // add initial delay (based on bubble vfx)
             popSequence.PrependInterval(0.3f);
-            
+
             // after pop, pop up the body and apply gravity
-            
+
             //popSequence.AppendCallback(BodyPhysics);
-            
+
         }
 
-        public void PopOthers()
+        public void PopOthers() {
+            var otherPoppables = GetPoppablesInRange();
+            PopManager.Instance.AddPopToQueue(otherPoppables);
+        }
+
+        public Poppable[] GetPoppablesInRange ()
         {
             var others = Physics.OverlapSphere(transform.position, PopRadius, PoppableLayerMask); // consider OverlapSphereNonAlloc
             var otherPoppables = others.Select(sel => sel.GetComponent<Poppable>())
-                .Where(wh => wh != this && wh != null);
-            PopManager.Instance.AddPopToQueue(otherPoppables.ToArray());
+                .Where(wh => wh != this && wh != null).ToArray();
+            return otherPoppables;
         }
 
         public void BodyPhysics()
