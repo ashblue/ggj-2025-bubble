@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using GameJammers.GGJ2025.Explodables;
+using GameJammers.GGJ2025.FloppyDisks;
 using GameJammers.GGJ2025.Utilities;
 using UnityEngine;
 
@@ -23,6 +24,9 @@ namespace GameJammers.GGJ2025.Bootstraps {
             if (_game.State != GameState.Placement) return;
 
             _game.SetState(GameState.Explosion);
+
+            // Disable all disk interactions so we can't screw with the game state
+            CursorInteractController.Instance.Lock();
 
             // Get all of the primers
             var primers = new List<IExplodable>();
@@ -51,6 +55,8 @@ namespace GameJammers.GGJ2025.Bootstraps {
             // @TODO Tally up RAM score (total disks used), total objectives, and remaining objectives
             // _game.SetState(GameState.Scoring);
             // _game.ScoreBoard.Play();
+
+            CursorInteractController.Instance.Unlock();
 
             Debug.Log("Done exploding");
         }
