@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using ChrisNolet.QuickOutline;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace GameJammers.GGJ2025.FloppyDisks {
@@ -23,12 +24,28 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         [Tooltip("Note all spawned world items are manually rotated to face the camera, hopefully this doesn't cause any issues")]
         public GameObject ComputerPrefab => _computerPrefab;
 
+        private Outline _outline;
+
+
         void Start () {
             CursorInteractController.Instance.Add(this);
+            TryGetComponent(out _outline);
+            if (_outline != null) { _outline.enabled = false; }
         }
 
         void OnMouseDown () {
             EventDiskClick.Invoke(this);
+            if (_outline != null) { _outline.OutlineColor = Color.magenta; }
+        }
+
+        void OnMouseEnter () {
+            if (_outline == null) { return; }
+            _outline.enabled = true;
+        }
+
+        void OnMouseExit () {
+            if (_outline == null) { return; }
+            _outline.enabled = false;
         }
     }
 }
