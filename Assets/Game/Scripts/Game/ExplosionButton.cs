@@ -25,9 +25,7 @@ namespace GameJammers.GGJ2025.Bootstraps {
         }
 
         void OnMouseDown () {
-            if (buttonoutline != null) {
-                buttonoutline.OutlineColor = Color.magenta;
-            }
+            buttonoutline?.OutlineColor = Color.magenta;
 
             if (!_game) {
                 Debug.LogWarning("Explosions cannot be tested without a GameController instance. You probably need to additively load the Main scene to globally load it.");
