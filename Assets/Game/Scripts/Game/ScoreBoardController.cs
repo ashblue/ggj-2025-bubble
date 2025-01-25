@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace GameJammers.GGJ2025.Bootstraps {
+namespace GameJammers.GGJ2025.FloppyDisks {
     public class ScoreBoardController : MonoBehaviour {
         [SerializeField]
         RectTransform _winScreen;

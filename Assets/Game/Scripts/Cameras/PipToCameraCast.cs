@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System.Collections;
+using GameJammers.GGJ2025.FloppyDisks;
 using GameJammers.GGJ2025.GodMode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,17 +14,9 @@ namespace GameJammers.GGJ2025.Cameras {
         [SerializeField]
         Camera _cameraMain;
 
-        [Tooltip("Optimize initial clicks by setting a specific layer for the main camera casts")]
-        [SerializeField]
-        LayerMask _cameraMainLayer;
-
         [Tooltip("The camera our texture is rendering from. Leave empty to auto populate with the first camera found on the layer")]
         [SerializeField]
         Camera _cameraPip;
-
-        [Tooltip("Set a specific layer for the pip camera casts for performance and correctness")]
-        [SerializeField]
-        LayerMask _cameraPipLayer;
 
         public bool IsMouseHover { get; private set; }
         public RaycastHit LastPipRay { get; private set; }
@@ -47,7 +40,8 @@ namespace GameJammers.GGJ2025.Cameras {
             var cameras = FindObjectsByType<Camera>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
             foreach (var cam in cameras) {
                 // Check if the camera has an overlapping layer with the pip camera layers
-                if (_cameraPipLayer != (_cameraPipLayer | (1 << cam.gameObject.layer))) continue;
+                var pipLayer = GameSettings.Current.LevelLayer;
+                if (pipLayer != (pipLayer | (1 << cam.gameObject.layer))) continue;
 
                 // Make sure it is a base camera (don't accidentally load the UI overlay camera)
                 if (cam.GetUniversalAdditionalCameraData().renderType != CameraRenderType.Base) continue;
@@ -93,7 +87,7 @@ namespace GameJammers.GGJ2025.Cameras {
 
             // Confirm the mouse is over this object
             var ray = _cameraMain.ScreenPointToRay(mousePosition);
-            if (!Physics.Raycast(ray, out var hit, Mathf.Infinity, _cameraMainLayer)) return (null, false);
+            if (!Physics.Raycast(ray, out var hit, Mathf.Infinity, GameSettings.Current.RoomLayer)) return (null, false);
             if (hit.collider.gameObject != gameObject) return (null, false);
 
             // Get the exact position on the texture
@@ -102,7 +96,8 @@ namespace GameJammers.GGJ2025.Cameras {
             var renderRay = _cameraPip.ViewportPointToRay(viewportPoint);
 
             // Cast a ray from the camera to the pip world for physical surfaces
-            if (!Physics.Raycast(renderRay, out var renderHit, Mathf.Infinity, _cameraPipLayer, QueryTriggerInteraction.Ignore)) {
+            var pipLayer = GameSettings.Current.LevelLayer;
+            if (!Physics.Raycast(renderRay, out var renderHit, Mathf.Infinity, pipLayer, QueryTriggerInteraction.Ignore)) {
                 return (null, true);
             }
 

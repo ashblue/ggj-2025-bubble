@@ -2,7 +2,7 @@ using ChrisNolet.QuickOutline;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace GameJammers.GGJ2025.Bootstraps {
+namespace GameJammers.GGJ2025.FloppyDisks {
     public class ExplosionButton : MonoBehaviour {
         GameController _game;
         private Outline _buttonoutline;

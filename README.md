@@ -9,7 +9,7 @@
 3. Running the game. You'll need to load the main scene and additively load the remaining scenes to play the game.
    1. Run the `Assets/Game/Scenes/Main/Main.unity` scene
    2. Drag and drop the `Assets/Game/Scenes/Levels/Level1/Level1.unity` scene into the hierarchy to additively load the gameplay level
-   3. Drag and drop the `Assets/Game/Scenes/Main/Main.unity` scene into the hierarchy to additively load the room
+   3. Drag and drop the `Assets/Game/Scenes/Room/Room.unity` scene into the hierarchy to additively load the room
 4. Run the game in the Unity editor to play
 
 ### Editing the project
