@@ -20,7 +20,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         }
 
         void OnMouseExit () {
-            _buttonoutline.enabled = false;
+            if (_buttonoutline != null) _buttonoutline.enabled = false;
         }
 
         void OnMouseDown () {
