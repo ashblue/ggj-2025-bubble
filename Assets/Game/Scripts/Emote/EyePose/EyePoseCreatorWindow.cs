@@ -5,7 +5,7 @@ using UnityEditor;
 namespace GameJammers.GGJ2025.Emote {
     public class EyePoseCreatorWindow : EditorWindow {
         private string poseName = "";
-        private string saveDirectory = "Assets/Game/Resources/EyePoses/";
+        private string saveDirectory = "Assets/Resources/EyePoses/";
         private GameObject selectedObject;
 
         [MenuItem("Tools/GGJ/EyePose Creator")]

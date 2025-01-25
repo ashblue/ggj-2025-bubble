@@ -105,12 +105,12 @@ namespace GameJammers.GGJ2025.Emote {
 
             SerializedObject thisTarget = new SerializedObject(target);
 
-            SerializedProperty thisLeftEye = thisTarget.FindProperty("LeftEye");
+            SerializedProperty thisLeftEye = thisTarget.FindProperty("left");
             SerializedProperty leftEye_localPosition = thisLeftEye.FindPropertyRelative("localPosition");
             SerializedProperty leftEye_localScale = thisLeftEye.FindPropertyRelative("localScale");
             SerializedProperty leftEye_localRotation = thisLeftEye.FindPropertyRelative("localRotation");
 
-            SerializedProperty thisRightEye = thisTarget.FindProperty("RightEye");
+            SerializedProperty thisRightEye = thisTarget.FindProperty("right");
             SerializedProperty rightEye_localPosition = thisRightEye.FindPropertyRelative("localPosition");
             SerializedProperty rightEye_localScale = thisRightEye.FindPropertyRelative("localScale");
             SerializedProperty rightEye_localRotation = thisRightEye.FindPropertyRelative("localRotation");

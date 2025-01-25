@@ -19,7 +19,13 @@ namespace GameJammers.GGJ2025.Emote {
         }
 
         public EyePose GetPose(string name) {
-            return poseLookup.GetValueOrDefault(name);
+            if (poseLookup.ContainsKey(name)) {
+                return poseLookup[name];
+            }
+            else {
+                Debug.LogWarning("No eye pose registered for " + name);
+                return null;
+            }
         }
     }
 }
