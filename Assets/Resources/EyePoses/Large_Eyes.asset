@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Large_Eyes
   left:
-    localPosition: {x: -0.08673204, y: -0.33724916, z: 0.06977254}
-    localScale: {x: 2.011795, y: 1, z: 0.68651}
+    localPosition: {x: -0.086, y: -0.337, z: 0.02}
+    localScale: {x: 2.5131688, y: 1, z: 0.72781}
     localRotation: {x: 0, y: -0, z: -0, w: 1}
   right:
-    localPosition: {x: 0.08673211, y: -0.33724934, z: 0.06977272}
-    localScale: {x: 2.011795, y: 1, z: 0.68651}
+    localPosition: {x: 0.087, y: -0.337, z: 0.02}
+    localScale: {x: 2.5131688, y: 1, z: 0.72781}
     localRotation: {x: 0, y: -0, z: -0, w: 1}
