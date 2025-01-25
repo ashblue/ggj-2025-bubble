@@ -908,7 +908,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 254591421}
         m_TargetAssemblyTypeName: GameJammers.GGJ2025.UI.MainMenu, Game
         m_MethodName: OnReturnFromCreditsPressed
         m_Mode: 1
