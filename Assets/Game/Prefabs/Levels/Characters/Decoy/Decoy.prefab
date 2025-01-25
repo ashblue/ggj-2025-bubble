@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a93d20dec0e4d7f920b8e640d0e307e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isPrimer: 0
+  _autoExplode: 0
   _isObjective: 0
   _explosionTrigger: {fileID: 7016125291947224446}
   _explosionDelay: 0.2
@@ -34226,7 +34226,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 6.01
+  m_Radius: 7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7016125291947224446
 MonoBehaviour:
