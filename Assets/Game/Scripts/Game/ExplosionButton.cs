@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameJammers.GGJ2025.Bootstraps {
+namespace GameJammers.GGJ2025.FloppyDisks {
     public class ExplosionButton : MonoBehaviour {
         GameController _game;
 

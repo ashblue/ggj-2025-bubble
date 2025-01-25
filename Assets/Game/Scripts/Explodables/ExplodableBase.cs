@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using GameJammers.GGJ2025.Bootstraps;
+using GameJammers.GGJ2025.FloppyDisks;
 using UnityEngine;
 
 namespace GameJammers.GGJ2025.Explodables {

@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-namespace GameJammers.GGJ2025.Bootstraps {
+namespace GameJammers.GGJ2025.FloppyDisks {
     public class GameController : MonoBehaviour, ICoroutineRunner {
         public static GameController Instance { get; private set; }
 
@@ -113,13 +113,14 @@ namespace GameJammers.GGJ2025.Bootstraps {
             foreach (var levelScene in _levelScenePaths) {
                 if (!SceneManager.GetSceneByPath(levelScene).isLoaded) continue;
                 isLevelLoaded = true;
+                _currentLevelPath = levelScene;
                 break;
             }
 
             // Additive load the files
             if (!isRoomLoaded) room = SceneManager.LoadSceneAsync(roomScenePath, LoadSceneMode.Additive);
             if (!isLevelLoaded) level = StartCoroutine(LoadLevelLoop(levelScenePath));
-            _currentLevelPath = levelScenePath;
+            if (_currentLevelPath == null) _currentLevelPath = levelScenePath;
 
             // Make sure everything is done loading;
             if (!isRoomLoaded) yield return room;
@@ -170,7 +171,6 @@ namespace GameJammers.GGJ2025.Bootstraps {
             // Reset the game state
             SetState(GameState.Placement);
             CursorInteractController.Instance.Reset();
-            Ram.Reset();
         }
 
         void ShowLoadingScreen () {
