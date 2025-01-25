@@ -1100,6 +1100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2853379105035992369}
+  - component: {fileID: 7978120654162101703}
   m_Layer: 6
   m_Name: LevelBootstrap
   m_TagString: Untagged
@@ -1127,6 +1128,19 @@ Transform:
   - {fileID: 1178857966373974200}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7978120654162101703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6195282947230355351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acc078b75e14fea9c1d4443976d14bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxRam: 20
 --- !u!1 &6206506118441494412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,6 +1871,7 @@ GameObject:
   - component: {fileID: 4312249014305244026}
   - component: {fileID: 7616881928806510012}
   - component: {fileID: 189245901851134220}
+  - component: {fileID: 8268463676130431862}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1947,3 +1962,16 @@ MonoBehaviour:
   _winScreen: {fileID: 6312289734554039282}
   _failScreen: {fileID: 4288582598070667528}
   _failText: {fileID: 1465151194498273880}
+--- !u!114 &8268463676130431862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8757958002058897665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96df0cf9bbb4fec95707d5a788eedfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _total: {fileID: 3523477467879916345}
