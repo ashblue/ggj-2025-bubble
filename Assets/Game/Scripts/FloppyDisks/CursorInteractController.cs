@@ -26,9 +26,6 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         [SerializeField]
         PipToCameraCast _pipToCamera;
 
-        [SerializeField]
-        LayerMask _groundLayer;
-
         enum State {
             HandEmpty,
             HoldingDiskRoom,
@@ -95,7 +92,8 @@ namespace GameJammers.GGJ2025.FloppyDisks {
                         var target = _pipToCamera.LastPipRay.collider.gameObject;
 
                         // Only target ground so we know it's safe to place the prefab there
-                        if (_groundLayer == (_groundLayer | (1 << target.layer))) {
+                        var groundLayer = GameSettings.Current.DiskPlacementLayer;
+                        if (groundLayer == (groundLayer | (1 << target.layer))) {
                             _computerPreview.SetActive(true);
                             var position = _pipToCamera.LastPipRay.point;
                             ShowDiskPreview(position);
