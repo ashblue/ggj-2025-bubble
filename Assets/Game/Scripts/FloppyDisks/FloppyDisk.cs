@@ -35,7 +35,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
 
         void OnMouseDown () {
             EventDiskClick.Invoke(this);
-            if (_outline != null) { _outline.OutlineColor = Color.magenta; }
+            if (_outline != null) { _outline.OutlineColor = Color.white; }
         }
 
         void OnMouseEnter () {
