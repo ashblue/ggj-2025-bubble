@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using GameJammers.GGJ2025.Explodables;
 using GameJammers.GGJ2025.FloppyDisks;
@@ -113,13 +113,14 @@ namespace GameJammers.GGJ2025.Bootstraps {
             foreach (var levelScene in _levelScenePaths) {
                 if (!SceneManager.GetSceneByPath(levelScene).isLoaded) continue;
                 isLevelLoaded = true;
+                _currentLevelPath = levelScene;
                 break;
             }
 
             // Additive load the files
             if (!isRoomLoaded) room = SceneManager.LoadSceneAsync(roomScenePath, LoadSceneMode.Additive);
             if (!isLevelLoaded) level = StartCoroutine(LoadLevelLoop(levelScenePath));
-            _currentLevelPath = levelScenePath;
+            if (_currentLevelPath == null) _currentLevelPath = levelScenePath;
 
             // Make sure everything is done loading;
             if (!isRoomLoaded) yield return room;
