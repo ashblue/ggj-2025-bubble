@@ -378,7 +378,7 @@ MonoBehaviour:
   _cameraPip: {fileID: 0}
   _cameraPipLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
 --- !u!64 &3661969850343724516
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -446,6 +446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5700852620094314986}
+  - component: {fileID: 8688736328442314013}
   m_Layer: 0
   m_Name: RoomBootstrap
   m_TagString: Untagged
@@ -472,6 +473,24 @@ Transform:
   - {fileID: 6030775998521591999}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8688736328442314013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4145141378670138498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c753903a69493fbe41ea76e7fc252f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roomCamera: {fileID: 2574999831214573045}
+  _cursorWorldZLock: 1.35
+  _pipToCamera: {fileID: 7780878832867518178}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &4286162681845997626
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +682,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2507
+  m_VersionIndex: 2510
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1017,7 +1036,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4877
+  m_VersionIndex: 4880
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2359,7 +2378,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3263
+  m_VersionIndex: 3266
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3200,7 +3219,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 10124
+  m_VersionIndex: 10127
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

@@ -6,7 +6,11 @@
 
 1. Clone this repository locally
 2. Open the project in Unity (it will auto select the current version and have you download it)
-3. Run the `Assets/Game/Scenes/Main.unity` scene
+3. Running the game. You'll need to load the main scene and additively load the remaining scenes to play the game.
+   1. Run the `Assets/Game/Scenes/Main/Main.unity` scene
+   2. Drag and drop the `Assets/Game/Scenes/Levels/Level1/Level1.unity` scene into the hierarchy to additively load the gameplay level
+   3. Drag and drop the `Assets/Game/Scenes/Main/Main.unity` scene into the hierarchy to additively load the room
+4. Run the game in the Unity editor to play
 
 ### Editing the project
 

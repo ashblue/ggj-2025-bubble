@@ -2,6 +2,7 @@
 using GameJammers.GGJ2025.GodMode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 namespace GameJammers.GGJ2025.Cameras {
     public class PipToCameraCast : MonoBehaviour {
@@ -35,18 +36,25 @@ namespace GameJammers.GGJ2025.Cameras {
         IEnumerator InitLoop () {
             // We don't have a pip camera, so we'll have to find one async before fully activating
             while (!_cameraPip) {
-                var cameras = FindObjectsByType<Camera>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-                foreach (var cam in cameras) {
-                    // Check if the camera has an overlapping layer with the pip camera layers
-                    if (_cameraPipLayer != (_cameraPipLayer | (1 << cam.gameObject.layer))) continue;
-                    _cameraPip = cam;
-                    break;
-                }
-
+                SyncCamera();
                 yield return null;
             }
 
             Bind();
+        }
+
+        void SyncCamera () {
+            var cameras = FindObjectsByType<Camera>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            foreach (var cam in cameras) {
+                // Check if the camera has an overlapping layer with the pip camera layers
+                if (_cameraPipLayer != (_cameraPipLayer | (1 << cam.gameObject.layer))) continue;
+
+                // Make sure it is a base camera (don't accidentally load the UI overlay camera)
+                if (cam.GetUniversalAdditionalCameraData().renderType != CameraRenderType.Base) continue;
+
+                _cameraPip = cam;
+                break;
+            }
         }
 
         void Bind () {
@@ -77,6 +85,12 @@ namespace GameJammers.GGJ2025.Cameras {
         (IInteractableObject target, bool screenHover) GetObjectFromPip (Vector3 mousePosition) {
             HasPipWorldPosition = false;
 
+            // Check if the camera has busted due to scene reload and try to re-sync
+            if (!_cameraPip) {
+                SyncCamera();
+                return (null, false);
+            }
+
             // Confirm the mouse is over this object
             var ray = _cameraMain.ScreenPointToRay(mousePosition);
             if (!Physics.Raycast(ray, out var hit, Mathf.Infinity, _cameraMainLayer)) return (null, false);
@@ -87,8 +101,8 @@ namespace GameJammers.GGJ2025.Cameras {
             var viewportPoint = new Vector3(textureCoord.x, textureCoord.y, 0);
             var renderRay = _cameraPip.ViewportPointToRay(viewportPoint);
 
-            // Cast a ray from the camera to the pip world
-            if (!Physics.Raycast(renderRay, out var renderHit, Mathf.Infinity, _cameraPipLayer)) {
+            // Cast a ray from the camera to the pip world for physical surfaces
+            if (!Physics.Raycast(renderRay, out var renderHit, Mathf.Infinity, _cameraPipLayer, QueryTriggerInteraction.Ignore)) {
                 return (null, true);
             }
 
