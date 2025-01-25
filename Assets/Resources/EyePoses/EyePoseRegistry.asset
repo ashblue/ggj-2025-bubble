@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5aeccf8e5784e23b97b5873e67fba8b, type: 3}
+  m_Name: EyePoseRegistry
+  m_EditorClassIdentifier: 
+  eyePoses:
+  - {fileID: 11400000, guid: 55c3c6b1684a209498ee4bf2f33279b2, type: 2}
+  - {fileID: 11400000, guid: d9b37d6d707eb124fb30a6cf70bf54d6, type: 2}
+  - {fileID: 11400000, guid: 9fe6795091e8914418abef97d05c7d98, type: 2}
+  - {fileID: 11400000, guid: 5992f52e919f51e4ab5b3a4510e0397e, type: 2}
+  - {fileID: 11400000, guid: 486a7b5230c8c484e81c69fcdddbff46, type: 2}
+  - {fileID: 11400000, guid: a554ea5144b84ff40b23ee02d053ea62, type: 2}
+  - {fileID: 11400000, guid: 6c0a77ff295abab45ad27301d32b7858, type: 2}
+  - {fileID: 11400000, guid: 3cd329f78bf7e144082d2f3301689f5a, type: 2}
+  - {fileID: 11400000, guid: dad4caf10ff6f4d4ea57454d8e8d8a4f, type: 2}
+  - {fileID: 11400000, guid: 93204562a51aefc4dbbb60b1b8b89784, type: 2}
