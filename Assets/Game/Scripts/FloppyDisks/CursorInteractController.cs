@@ -97,7 +97,8 @@ namespace GameJammers.GGJ2025.FloppyDisks {
                         // Only target ground so we know it's safe to place the prefab there
                         if (_groundLayer == (_groundLayer | (1 << target.layer))) {
                             _computerPreview.SetActive(true);
-                            _computerPreview.transform.position = _pipToCamera.LastPipRay.point;
+                            var position = _pipToCamera.LastPipRay.point;
+                            ShowDiskPreview(position);
                         }
                     }
                 } else {
@@ -106,14 +107,25 @@ namespace GameJammers.GGJ2025.FloppyDisks {
                 }
 
                 if (Mouse.current.leftButton.wasPressedThisFrame && _computerPreview.activeSelf) {
-                    var position = _computerPreview.transform.position;
-                    Instantiate(disk.ComputerPrefab, position, Quaternion.identity);
+                    SpawnDisk(disk, _computerPreview.transform.position);
                 }
 
                 yield return null;
             }
 
             _loop = null;
+        }
+
+        void ShowDiskPreview (Vector3 position) {
+            _computerPreview.transform.position = position;
+        }
+
+        void SpawnDisk (FloppyDisk disk, Vector3 position) {
+            // Force spawned objects into the level transform to prevent leaking between scene loads
+            var parent = LevelController.Instance.transform;
+
+            Instantiate(disk.ComputerPrefab, position, Quaternion.identity, parent);
+            GameController.Instance.Ram.Add(disk.Ram);
         }
 
         void Stop () {

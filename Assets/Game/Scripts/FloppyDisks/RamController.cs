@@ -6,6 +6,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         public int Current { get; private set; }
 
         public UnityEvent<int, int> EventRamChanged { get; } = new();
+        public bool IsValid => Current <= Max;
 
         public void Reset () {
             Max = 0;
