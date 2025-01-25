@@ -19,7 +19,6 @@ namespace GameJammers.GGJ2025.UI {
             _resumeButton.gameObject.SetActive(LevelsCleared > 0);
             _startMenu.SetActive(true);
             _creditsMenu.SetActive(false);
-            Debug.Log(gameScene + " is target");
         }
 
         public void LoadGameScene (int level) {
@@ -27,7 +26,6 @@ namespace GameJammers.GGJ2025.UI {
             void OnLoaded (AsyncOperation op) {
                 // Do some logic here to pass the level number to the scene
                 // so the appropriate level is loaded.
-                Debug.Log($"Would have loaded level {level}");
                 loading.completed -= OnLoaded;
             }
             loading.completed += OnLoaded;
