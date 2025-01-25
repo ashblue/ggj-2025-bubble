@@ -2,6 +2,7 @@
 using GameJammers.GGJ2025.GodMode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 namespace GameJammers.GGJ2025.Cameras {
     public class PipToCameraCast : MonoBehaviour {
@@ -47,6 +48,10 @@ namespace GameJammers.GGJ2025.Cameras {
             foreach (var cam in cameras) {
                 // Check if the camera has an overlapping layer with the pip camera layers
                 if (_cameraPipLayer != (_cameraPipLayer | (1 << cam.gameObject.layer))) continue;
+
+                // Make sure it is a base camera (don't accidentally load the UI overlay camera)
+                if (cam.GetUniversalAdditionalCameraData().renderType != CameraRenderType.Base) continue;
+
                 _cameraPip = cam;
                 break;
             }
