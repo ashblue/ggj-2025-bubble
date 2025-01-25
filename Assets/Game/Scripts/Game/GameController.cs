@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GameJammers.GGJ2025.Explodables;
+using GameJammers.GGJ2025.FloppyDisks;
+using GameJammers.GGJ2025.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace GameJammers.GGJ2025.Bootstraps {
-    public class GameController : MonoBehaviour {
+    public class GameController : MonoBehaviour, ICoroutineRunner {
+        public static GameController Instance { get; private set; }
+
         int _level;
         string _currentLevelPath;
         bool _endGame;
@@ -13,6 +18,15 @@ namespace GameJammers.GGJ2025.Bootstraps {
         [Tooltip("The room scene that should be loaded into the game")]
         [SerializeField]
         string _roomScenePath;
+
+        [Tooltip("A list of level scene paths. They will be loaded in order each time the current level is beaten. Note the scene path must be included for additive level debugging to prevent double loads")]
+        [SerializeField]
+        List<string> _levelScenePaths;
+
+        [Header("Dependencies")]
+
+        [SerializeField]
+        ExplodeController _exploder;
 
         [Tooltip("Camera for initial loading until a real camera exists from the additive scene loads")]
         [SerializeField]
@@ -26,9 +40,7 @@ namespace GameJammers.GGJ2025.Bootstraps {
         [SerializeField]
         Canvas _gameCompleteScreen;
 
-        [Tooltip("A list of level scene paths. They will be loaded in order each time the current level is beaten. Note the scene path must be included for additive level debugging to prevent double loads")]
-        [SerializeField]
-        List<string> _levelScenePaths;
+        [Header("Events")]
 
         [SerializeField]
         UnityEvent _eventGameComplete;
@@ -36,11 +48,21 @@ namespace GameJammers.GGJ2025.Bootstraps {
         [SerializeField]
         UnityEvent _eventGameReady;
 
+        public ExplodeController Exploder => _exploder;
         public UnityEvent EventGameReady => _eventGameReady;
         public UnityEvent EventGameComplete => _eventGameComplete;
+        public GameState State { get; private set; }
+        public ExplodableCollection Explodables { get; } = new();
+        public RamController Ram { get; } = new();
 
         void Awake () {
+            Instance = this;
             _loadingScreen.gameObject.SetActive(true);
+            _exploder = new ExplodeController(this, Explodables, this);
+        }
+
+        void OnDestroy () {
+            if (Instance == this) Instance = null;
         }
 
         void Start () {
@@ -97,6 +119,7 @@ namespace GameJammers.GGJ2025.Bootstraps {
             // Additive load the files
             if (!isRoomLoaded) room = SceneManager.LoadSceneAsync(roomScenePath, LoadSceneMode.Additive);
             if (!isLevelLoaded) level = StartCoroutine(LoadLevelLoop(levelScenePath));
+            _currentLevelPath = levelScenePath;
 
             // Make sure everything is done loading;
             if (!isRoomLoaded) yield return room;
@@ -143,6 +166,11 @@ namespace GameJammers.GGJ2025.Bootstraps {
             ShowLoadingScreen();
             yield return StartCoroutine(LoadLevelLoop(path));
             HideLoadingScreen();
+
+            // Reset the game state
+            SetState(GameState.Placement);
+            CursorInteractController.Instance.Reset();
+            Ram.Reset();
         }
 
         void ShowLoadingScreen () {
@@ -154,6 +182,14 @@ namespace GameJammers.GGJ2025.Bootstraps {
         void HideLoadingScreen () {
             _tmpCamera.gameObject.SetActive(false);
             _loadingScreen.gameObject.SetActive(false);
+        }
+
+        public void SetState (GameState state) {
+            State = state;
+        }
+
+        public void RestartLevel () {
+            StartCoroutine(LoadNextLevelLoop(_currentLevelPath));
         }
     }
 }

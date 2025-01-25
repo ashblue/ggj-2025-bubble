@@ -10,9 +10,11 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         public static CursorInteractController Instance => _instance;
 
         readonly List<FloppyDisk> _disks = new();
+
         State _state = State.HandEmpty;
         GameObject _roomDisk;
         GameObject _computerPreview;
+        Coroutine _loop;
 
         [SerializeField]
         Camera _roomCamera;
@@ -24,10 +26,14 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         [SerializeField]
         PipToCameraCast _pipToCamera;
 
+        [SerializeField]
+        LayerMask _groundLayer;
+
         enum State {
             HandEmpty,
             HoldingDiskRoom,
             HoldingDiskComputer,
+            Lock,
         }
 
         void Awake () {
@@ -41,7 +47,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         }
 
         void OnDestroy () {
-            if (_instance) _instance = null;
+            if (_instance == this) _instance = null;
         }
 
         public void Add (FloppyDisk disk) {
@@ -57,7 +63,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
             if (_state != State.HandEmpty) return;
 
             // Enter follow cursor room state
-            StartCoroutine(HoldingDiskLoop(disk));
+            _loop = StartCoroutine(HoldingDiskLoop(disk));
         }
 
         IEnumerator HoldingDiskLoop (FloppyDisk disk) {
@@ -74,9 +80,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
 
                 // Handle canceling the disk placement
                 if (Mouse.current.rightButton.wasPressedThisFrame) {
-                    Destroy(_roomDisk);
-                    Destroy(_computerPreview);
-                    _state = State.HandEmpty;
+                    Stop();
                     yield break;
                 }
 
@@ -91,7 +95,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
                         var target = _pipToCamera.LastPipRay.collider.gameObject;
 
                         // Only target ground so we know it's safe to place the prefab there
-                        if (target.layer == LayerMask.NameToLayer("Ground")) {
+                        if (_groundLayer == (_groundLayer | (1 << target.layer))) {
                             _computerPreview.SetActive(true);
                             _computerPreview.transform.position = _pipToCamera.LastPipRay.point;
                         }
@@ -108,6 +112,25 @@ namespace GameJammers.GGJ2025.FloppyDisks {
 
                 yield return null;
             }
+
+            _loop = null;
+        }
+
+        void Stop () {
+            if (_loop != null) StopCoroutine(_loop);
+            if (_roomDisk) Destroy(_roomDisk);
+            if (_computerPreview) Destroy(_computerPreview);
+            _state = State.HandEmpty;
+            _loop = null;
+        }
+
+        public void Lock () {
+            Stop();
+            _state = State.Lock;
+        }
+
+        public void Reset () {
+            _state = State.HandEmpty;
         }
     }
 }
