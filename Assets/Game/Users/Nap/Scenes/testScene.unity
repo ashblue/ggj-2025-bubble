@@ -1872,8 +1872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BubbleTop: {fileID: 1066832886}
   BubbleBottom: {fileID: 659507325}
-  BubbleLeftArm: {fileID: 940467823}
-  BubbleRightArm: {fileID: 255000188}
+  BubbleArms: {fileID: 940467823}
   Body: {fileID: 573344811}
   DistortionArea: {fileID: 1603270019}
   PostPopImpulseForce: 5
@@ -3548,6 +3547,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleVfx: {fileID: 1551299672}
+  PopDelayMin: 0.01
+  PopDelayMax: 0.3
 --- !u!1 &1568726395
 GameObject:
   m_ObjectHideFlags: 0
@@ -4431,6 +4432,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015496610}
   m_Mesh: {fileID: 1013006867569979, guid: 14cf713423deb234485526afbfdcea05, type: 3}
+--- !u!1 &2062100861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2062100862}
+  m_Layer: 0
+  m_Name: Empty
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2062100862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062100861}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5387747, y: 0.48313135, z: 0.50512224}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2075416128
 GameObject:
   m_ObjectHideFlags: 0
@@ -5834,3 +5866,4 @@ SceneRoots:
   - {fileID: 1551299673}
   - {fileID: 2390953169951887694}
   - {fileID: 910248661}
+  - {fileID: 2062100862}

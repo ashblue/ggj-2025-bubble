@@ -23,7 +23,6 @@ namespace GameJammers.GGJ2025.Emote.Behaviors {
 
             SequenceInfo.eyePoses.Add((0, Duration, blinkPose, Mask, EaseFunction));
             SequenceInfo.eyePoses.Add((Duration, Duration, _returnPose, Mask, EaseFunction));
-            Debug.Log($"SingleBlink sequence count: {SequenceInfo.eyePoses.Count}");
             return base.BuildSequence ();
         }
     }
