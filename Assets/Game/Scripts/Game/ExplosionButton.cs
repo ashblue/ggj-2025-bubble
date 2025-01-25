@@ -20,8 +20,7 @@ namespace GameJammers.GGJ2025.Bootstraps {
         }
 
         void OnMouseExit () {
-            if (buttonoutline == null) { return; }
-            buttonoutline.enabled = false;
+            buttonoutline?.enabled = false;
         }
 
         void OnMouseDown () {
