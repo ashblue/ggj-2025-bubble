@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using GameJammers.GGJ2025.Explodables;
 using GameJammers.GGJ2025.FloppyDisks;
