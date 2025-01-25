@@ -47,7 +47,6 @@ namespace GameJammers.GGJ2025.FloppyDisks {
                 Destroy(gameObject);
                 return;
             }
-            Debug.Log("worked");
             _instance = this;
             defaultMouseObject = Instantiate(_defaultMouse);
             hoverMouseObject = Instantiate(_hoverMouse);
