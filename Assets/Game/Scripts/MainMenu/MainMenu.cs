@@ -8,7 +8,7 @@ namespace GameJammers.GGJ2025.UI {
 
         public int LevelsCleared { get; set; } = 0;
 
-        public string targetScene = "";
+        public string gameScene;
 
         [SerializeField] Button _resumeButton;
         [SerializeField] GameObject _creditsMenu;
@@ -19,10 +19,11 @@ namespace GameJammers.GGJ2025.UI {
             _resumeButton.gameObject.SetActive(LevelsCleared > 0);
             _startMenu.SetActive(true);
             _creditsMenu.SetActive(false);
+            Debug.Log(gameScene + " is target");
         }
 
         public void LoadGameScene (int level) {
-            var loading = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
+            var loading = SceneManager.LoadSceneAsync(gameScene, LoadSceneMode.Single);
             void OnLoaded (AsyncOperation op) {
                 // Do some logic here to pass the level number to the scene
                 // so the appropriate level is loaded.
