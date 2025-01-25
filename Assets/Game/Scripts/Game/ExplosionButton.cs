@@ -9,22 +9,22 @@ namespace GameJammers.GGJ2025.FloppyDisks {
 
         void Start () {
             _game = GameController.Instance;
-            TryGetComponent(out _buttonoutline);
-            if(_buttonoutline != null) {
-                _buttonoutline.enabled = false;
+            TryGetComponent(out _buttonOutline);
+            if(_buttonOutline != null) {
+                _buttonOutline.enabled = false;
             }
         }
 
         void OnMouseEnter () {
-            if (_buttonoutline != null) _buttonoutline.enabled = true;
+            if (_buttonOutline != null) _buttonOutline.enabled = true;
         }
 
         void OnMouseExit () {
-            if (_buttonoutline != null) _buttonoutline.enabled = false;
+            if (_buttonOutline != null) _buttonOutline.enabled = false;
         }
 
         void OnMouseDown () {
-            if (_buttonoutline != null) _buttonoutline.OutlineColor = Color.magenta;
+            if (_buttonOutline != null) _buttonOutline.OutlineColor = Color.magenta;
 
             if (!_game) {
                 Debug.LogWarning("Explosions cannot be tested without a GameController instance. You probably need to additively load the Main scene to globally load it.");
