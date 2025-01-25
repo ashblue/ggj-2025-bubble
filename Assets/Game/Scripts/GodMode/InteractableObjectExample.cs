@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace GameJammers.GGJ2025.GodMode {
     public class InteractableObjectExample : InteractableObjectBase {
