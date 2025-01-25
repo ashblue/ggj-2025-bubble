@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using GameJammers.GGJ2025.Cameras;
 using UnityEngine;
@@ -8,6 +9,21 @@ namespace GameJammers.GGJ2025.FloppyDisks {
     public class CursorInteractController : MonoBehaviour {
         static CursorInteractController _instance;
         public static CursorInteractController Instance => _instance;
+
+        public bool TacticalView {
+            get => _tacticalView;
+            private set {
+                if (_tacticalView != value) {
+                    TacticalViewToggled?.Invoke(value);
+                }
+                _tacticalView = value;
+            }
+        }
+        bool _tacticalView = true;
+
+        public event Action<bool> TacticalViewToggled;
+
+        InputAction _toggleTacticalViewAction;
 
         readonly List<FloppyDisk> _disks = new();
 
@@ -44,10 +60,13 @@ namespace GameJammers.GGJ2025.FloppyDisks {
             }
 
             _instance = this;
+            _toggleTacticalViewAction = InputSystem.actions.FindAction("ToggleTacticalView");
+            _toggleTacticalViewAction.performed += OnTacticalViewToggled;
         }
 
         void OnDestroy () {
             if (_instance == this) _instance = null;
+            _toggleTacticalViewAction.performed -= OnTacticalViewToggled;
         }
 
         public void Add (FloppyDisk disk) {
@@ -72,6 +91,9 @@ namespace GameJammers.GGJ2025.FloppyDisks {
             _roomDisk = Instantiate(disk.RoomPrefab);
             _computerPreview = Instantiate(disk.ComputerPreviewPrefab);
             _computerPreview.SetActive(false);
+            if (_computerPreview.TryGetComponent(out ITacticalView view)) {
+                Instance.TacticalViewToggled += view.ToggleView;
+            }
 
             while (_state != State.HandEmpty) {
                 var mousePos = Mouse.current.position.ReadValue();
@@ -119,7 +141,12 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         void Stop () {
             if (_loop != null) StopCoroutine(_loop);
             if (_roomDisk) Destroy(_roomDisk);
-            if (_computerPreview) Destroy(_computerPreview);
+            if (_computerPreview) {
+                if (_computerPreview.TryGetComponent(out ITacticalView view)) {
+                    Instance.TacticalViewToggled -= view.ToggleView;
+                }
+                Destroy(_computerPreview);
+            }
             _state = State.HandEmpty;
             _loop = null;
         }
@@ -132,5 +159,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         public void Reset () {
             _state = State.HandEmpty;
         }
+
+        private void OnTacticalViewToggled (InputAction.CallbackContext _) => TacticalView = !TacticalView;
     }
 }
