@@ -178,8 +178,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Grahame Watt
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
-  m_sharedMaterial: {fileID: 3157203744239055751, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
+  m_sharedMaterial: {fileID: -4673053647688639158, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -477,8 +477,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Resume Game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
-  m_sharedMaterial: {fileID: 3157203744239055751, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
+  m_sharedMaterial: {fileID: -4673053647688639158, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -613,8 +613,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Max Oehlert
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
-  m_sharedMaterial: {fileID: 3157203744239055751, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
+  m_sharedMaterial: {fileID: -4673053647688639158, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -749,8 +749,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Quit '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
-  m_sharedMaterial: {fileID: 3157203744239055751, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
+  m_sharedMaterial: {fileID: -4673053647688639158, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1347,8 +1347,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Start Game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
-  m_sharedMaterial: {fileID: 3157203744239055751, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
+  m_sharedMaterial: {fileID: -4673053647688639158, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1483,8 +1483,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Back
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
-  m_sharedMaterial: {fileID: 3157203744239055751, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
+  m_sharedMaterial: {fileID: -4673053647688639158, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1695,8 +1695,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Zane Blackburn
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
-  m_sharedMaterial: {fileID: 3157203744239055751, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
+  m_sharedMaterial: {fileID: -4673053647688639158, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1831,8 +1831,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Daniel Hiley
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
-  m_sharedMaterial: {fileID: 3157203744239055751, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
+  m_sharedMaterial: {fileID: -4673053647688639158, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2178,8 +2178,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Ash Blue
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
-  m_sharedMaterial: {fileID: 3157203744239055751, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
+  m_sharedMaterial: {fileID: -4673053647688639158, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2465,8 +2465,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Allan
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
-  m_sharedMaterial: {fileID: 3157203744239055751, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
+  m_sharedMaterial: {fileID: -4673053647688639158, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2703,8 +2703,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Luis Brito
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
-  m_sharedMaterial: {fileID: 3157203744239055751, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
+  m_sharedMaterial: {fileID: -4673053647688639158, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2944,8 +2944,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Starring
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e77c43eda896d6f4fb2ed357428a35b5, type: 2}
-  m_sharedMaterial: {fileID: 3452647160460271796, guid: e77c43eda896d6f4fb2ed357428a35b5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 74f4c3a19ecbeaf44a16cb536bfa1aa4, type: 2}
+  m_sharedMaterial: {fileID: -3532616487327408153, guid: 74f4c3a19ecbeaf44a16cb536bfa1aa4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3367,8 +3367,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Nathan Pratt
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
-  m_sharedMaterial: {fileID: 3157203744239055751, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
+  m_sharedMaterial: {fileID: -4673053647688639158, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3503,8 +3503,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Created for the 2025 Global Game Jam
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
-  m_sharedMaterial: {fileID: 3157203744239055751, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
+  m_sharedMaterial: {fileID: -4673053647688639158, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3640,7 +3640,7 @@ MonoBehaviour:
   m_text: Bots
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 08f250535325aaa44b88968c74f3397d, type: 2}
-  m_sharedMaterial: {fileID: 1035274911615208654, guid: 08f250535325aaa44b88968c74f3397d, type: 2}
+  m_sharedMaterial: {fileID: -5536034656182093185, guid: 08f250535325aaa44b88968c74f3397d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3775,8 +3775,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Bubble
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e77c43eda896d6f4fb2ed357428a35b5, type: 2}
-  m_sharedMaterial: {fileID: 3452647160460271796, guid: e77c43eda896d6f4fb2ed357428a35b5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 74f4c3a19ecbeaf44a16cb536bfa1aa4, type: 2}
+  m_sharedMaterial: {fileID: -3532616487327408153, guid: 74f4c3a19ecbeaf44a16cb536bfa1aa4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4282,8 +4282,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Credits
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
-  m_sharedMaterial: {fileID: 3157203744239055751, guid: cbf45720b24fa294eac0afb4a2e29049, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
+  m_sharedMaterial: {fileID: -4673053647688639158, guid: 10e1976c4a117fe4bbb81b4ae614d3b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
