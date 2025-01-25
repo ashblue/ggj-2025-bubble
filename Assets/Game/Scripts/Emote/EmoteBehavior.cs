@@ -1,11 +1,8 @@
 using UnityEngine;
 
 using System.Collections.Generic;
-using System.Linq;
 
 using DG.Tweening;
-using PlasticPipe.PlasticProtocol.Client;
-using UnityEditor.UI;
 
 namespace GameJammers.GGJ2025.Emote {
     public enum EmoteType {
