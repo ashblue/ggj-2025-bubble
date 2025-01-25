@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a93d20dec0e4d7f920b8e640d0e307e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isPrimer: 1
+  _autoExplode: 1
   _isObjective: 0
   _explosionTrigger: {fileID: 7619170101488112598}
   _explosionDelay: 0

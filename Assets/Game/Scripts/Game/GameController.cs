@@ -62,7 +62,7 @@ namespace GameJammers.GGJ2025.Bootstraps {
         }
 
         void OnDestroy () {
-            Instance = null;
+            if (Instance == this) Instance = null;
         }
 
         void Start () {
@@ -119,6 +119,7 @@ namespace GameJammers.GGJ2025.Bootstraps {
             // Additive load the files
             if (!isRoomLoaded) room = SceneManager.LoadSceneAsync(roomScenePath, LoadSceneMode.Additive);
             if (!isLevelLoaded) level = StartCoroutine(LoadLevelLoop(levelScenePath));
+            _currentLevelPath = levelScenePath;
 
             // Make sure everything is done loading;
             if (!isRoomLoaded) yield return room;

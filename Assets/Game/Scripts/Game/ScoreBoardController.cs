@@ -5,10 +5,10 @@ using UnityEngine;
 namespace GameJammers.GGJ2025.Bootstraps {
     public class ScoreBoardController : MonoBehaviour {
         [SerializeField]
-        Canvas _winScreen;
+        RectTransform _winScreen;
 
         [SerializeField]
-        Canvas _failScreen;
+        RectTransform _failScreen;
 
         [SerializeField]
         TextMeshProUGUI _failText;
@@ -23,7 +23,7 @@ namespace GameJammers.GGJ2025.Bootstraps {
         }
 
         void OnDestroy () {
-            Instance = null;
+            if (Instance == this) Instance = null;
         }
 
         public void Play (int objectives, int objectivesComplete, int ramMax, int ramScore) {

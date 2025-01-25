@@ -488,6 +488,9 @@ MonoBehaviour:
   _roomCamera: {fileID: 2574999831214573045}
   _cursorWorldZLock: 1.35
   _pipToCamera: {fileID: 7780878832867518178}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &4286162681845997626
 GameObject:
   m_ObjectHideFlags: 0

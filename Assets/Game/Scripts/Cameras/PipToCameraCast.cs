@@ -35,18 +35,21 @@ namespace GameJammers.GGJ2025.Cameras {
         IEnumerator InitLoop () {
             // We don't have a pip camera, so we'll have to find one async before fully activating
             while (!_cameraPip) {
-                var cameras = FindObjectsByType<Camera>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-                foreach (var cam in cameras) {
-                    // Check if the camera has an overlapping layer with the pip camera layers
-                    if (_cameraPipLayer != (_cameraPipLayer | (1 << cam.gameObject.layer))) continue;
-                    _cameraPip = cam;
-                    break;
-                }
-
+                SyncCamera();
                 yield return null;
             }
 
             Bind();
+        }
+
+        void SyncCamera () {
+            var cameras = FindObjectsByType<Camera>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            foreach (var cam in cameras) {
+                // Check if the camera has an overlapping layer with the pip camera layers
+                if (_cameraPipLayer != (_cameraPipLayer | (1 << cam.gameObject.layer))) continue;
+                _cameraPip = cam;
+                break;
+            }
         }
 
         void Bind () {
@@ -76,6 +79,12 @@ namespace GameJammers.GGJ2025.Cameras {
 
         (IInteractableObject target, bool screenHover) GetObjectFromPip (Vector3 mousePosition) {
             HasPipWorldPosition = false;
+
+            // Check if the camera has busted due to scene reload and try to re-sync
+            if (!_cameraPip) {
+                SyncCamera();
+                return (null, false);
+            }
 
             // Confirm the mouse is over this object
             var ray = _cameraMain.ScreenPointToRay(mousePosition);
