@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEditor;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using UnityEngine.Serialization;
+using System.Linq;
 
 namespace GameJammers.GGJ2025.Emote {
     [System.Serializable]
@@ -23,7 +21,7 @@ namespace GameJammers.GGJ2025.Emote {
         }
     }
 
-    [CreateAssetMenu(fileName = "NewEyePose", menuName = "GGJ/Emotes/EyePose", order = 1)]
+    [CreateAssetMenu(fileName = "EyePose", menuName = "GGJ/Emotes/EyePose", order = 1)]
     public class EyePose : ScriptableObject {
         public string Name;
         [FormerlySerializedAs("LeftEye")] public TransformInfo left;
@@ -129,27 +127,6 @@ namespace GameJammers.GGJ2025.Emote {
             thisTarget.ApplyModifiedProperties();
 
             Debug.Log($"Updated EyePose from {selectedObject.name}");
-        }
-    }
-
-    [CreateAssetMenu(fileName = "EyePoseRegistry", menuName = "GGJ/Emotes/EyePoseRegistry", order = 2)]
-    public class EyePoseRegistry : ScriptableObject {
-        [SerializeField] public List<EyePose> eyePoses = new List<EyePose>();
-
-        private Dictionary<string, EyePose> poseLookup;
-
-        private void OnEnable() {
-            // Initialize the lookup dictionary for quick access
-            poseLookup = new Dictionary<string, EyePose>();
-            foreach (var pose in eyePoses) {
-                if (pose != null && !string.IsNullOrEmpty(pose.Name)) {
-                    poseLookup[pose.Name] = pose;
-                }
-            }
-        }
-
-        public EyePose GetPose(string name) {
-            return poseLookup.GetValueOrDefault(name);
         }
     }
 }
