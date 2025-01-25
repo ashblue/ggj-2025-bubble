@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e6c105b5642a349be8d77eb6d4c0f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScene: Game/Scenes/Main/Main.unity
+  gameScene: Game/Scenes/Main/Main
   _resumeButton: {fileID: 610902844}
   _creditsMenu: {fileID: 1412393236}
   _startMenu: {fileID: 1867549494}
