@@ -5,7 +5,7 @@ using UnityEngine.Events;
 namespace GameJammers.GGJ2025.FloppyDisks {
     public class ExplosionButton : MonoBehaviour {
         GameController _game;
-        private Outline _buttonoutline;
+        private Outline _buttonOutline;
 
         void Start () {
             _game = GameController.Instance;
