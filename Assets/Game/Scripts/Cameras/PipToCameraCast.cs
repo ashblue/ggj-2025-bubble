@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using GameJammers.GGJ2025.GodMode;
 using UnityEngine;
 using UnityEngine.InputSystem;
