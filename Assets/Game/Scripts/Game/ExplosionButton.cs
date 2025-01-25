@@ -24,8 +24,6 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         }
 
         void OnMouseDown () {
-            if (_buttonOutline != null) _buttonOutline.OutlineColor = Color.magenta;
-
             if (!_game) {
                 Debug.LogWarning("Explosions cannot be tested without a GameController instance. You probably need to additively load the Main scene to globally load it.");
                 return;
