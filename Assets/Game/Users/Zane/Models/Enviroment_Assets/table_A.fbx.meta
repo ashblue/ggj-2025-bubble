@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 247048a472323c04490197f7d035cd8a
+guid: c21cf059fd94ad74eb83e704590d7ab0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: table_and_chairs_mat
+    second: {fileID: 2100000, guid: d9a010c1c9a0c1045bb45089e5612804, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -30,7 +35,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1

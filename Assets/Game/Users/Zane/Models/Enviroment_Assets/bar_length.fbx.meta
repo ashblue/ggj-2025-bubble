@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 247048a472323c04490197f7d035cd8a
+guid: 4dd6df43f81ac6f4c92fb35e13cdfc02
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: booths_and_bars
+    second: {fileID: 2100000, guid: 53c59372c4dd806499ecfd17b1a5f889, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -30,7 +35,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1

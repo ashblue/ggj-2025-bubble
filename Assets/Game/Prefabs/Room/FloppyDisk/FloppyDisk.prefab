@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6003955089874530576}
   - component: {fileID: 6760746897881912554}
   - component: {fileID: 5943409981399373201}
+  - component: {fileID: 4860220435800325489}
   m_Layer: 0
   m_Name: FloppyDisk
   m_TagString: Untagged
@@ -70,6 +71,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.28, y: 0.29503345, z: 0.010298252}
   m_Center: {x: 0, y: 0.021930695, z: 0.0012792647}
+--- !u!114 &4860220435800325489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8622463861738705386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.94509804, b: 0.02745098, a: 1}
+  outlineWidth: 6.01
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &8113976319972611975
 PrefabInstance:
   m_ObjectHideFlags: 0
