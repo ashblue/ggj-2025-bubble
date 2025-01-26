@@ -28,11 +28,12 @@ namespace GameJammers.GGJ2025.Explodables {
         }
 
         public void Prime () {
-            IsPrimed = true;
-            // Track this globally so we can wait for all explosions to resolve
-            _collection.AddExploding(this);
-            PlayAnimation(); // may hide this for now?
-
+            if (!IsPrimed) {
+                IsPrimed = true;
+                // Track this globally so we can wait for all explosions to resolve
+                _collection.AddExploding(this);
+                PlayAnimation(); // may hide this for now?
+            }
         }
 
         void PlayAnimation() {

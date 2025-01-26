@@ -60,8 +60,8 @@ namespace GameJammers.GGJ2025.Explodables
 
         public void AddPopToQueue(Poppable poppable)
         {
-            if (poppable.canPop && !queuedPops.Contains(poppable))
-            {
+            if (poppable.canPop && !queuedPops.Contains(poppable)) {
+                poppable.Prime();
                 poppable.canPop = false;
                 queuedPops.Enqueue(poppable);
             }
