@@ -38,7 +38,6 @@ namespace GameJammers.GGJ2025.Emote {
             for (int i = 0; i < Behaviors.Count; i++) {
                 w += Behaviors[i].weight;
                 if (w >= choice) {
-                    Debug.Log($"Choosing behavior: {Behaviors[i].behavior.GetType()}");
                     return Behaviors[i].behavior;
                 }
             }

@@ -33,7 +33,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
 
             var objectives = GameController.Instance.Explodables.Items.Count(sel => sel.IsObjective);
             var objectivesComplete =
-                GameController.Instance.Explodables.Items.Count(sel => sel.IsObjective && sel.IsPrimed);
+                GameController.Instance.Explodables.Items.Count(sel => sel.IsObjective && sel.IsPoppedSuccess);
 
             GameController.Instance.SetState(GameState.Scoring);
 

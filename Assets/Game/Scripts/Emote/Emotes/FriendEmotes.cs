@@ -44,7 +44,6 @@ namespace GameJammers.GGJ2025.Emote.Emotes {
                 }
                 else {
                     var nextBehavior = NextBehavior();
-                    Debug.Log($"Next behavior: {nextBehavior.GetType()}");
                     _currentSequence = nextBehavior.BuildSequence();
                 }
 

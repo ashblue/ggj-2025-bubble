@@ -3,6 +3,7 @@
         bool AutoExplode { get; }
         bool IsObjective { get; }
         bool IsPrimed { get; }
+        bool IsPoppedSuccess { get; }
 
         void Explode ();
     }

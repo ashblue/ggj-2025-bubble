@@ -16,6 +16,7 @@ namespace GameJammers.GGJ2025.Explodables {
         public bool AutoExplode => _autoExplode;
         public bool IsObjective => _isObjective;
         public bool IsPrimed { get; private set; } // now only used for scoring
+        public virtual bool IsPoppedSuccess => IsPrimed;
 
         protected virtual void Start () {
             _collection = GameController.Instance.Explodables;
@@ -59,9 +60,7 @@ namespace GameJammers.GGJ2025.Explodables {
                 GameController.Instance.TacticalViewToggled -= ToggleView;
             }
 
-            if (_collection != null) {
-                _collection.Cleanup(this);
-            }
+            GameController.Instance?.Explodables.Remove(this);
         }
 
         public abstract void ToggleView (bool toggle);
