@@ -104,13 +104,13 @@ namespace GameJammers.GGJ2025.FloppyDisks {
                     _computerPreview.SetActive(false);
                 }
 
-                if (_roomDisk.activeSelf)
-                    MouseStates.Instance.ChangeState(MouseStates.State.Hover);
-                else if (_computerPreview.activeSelf) {
+                if (_computerPreview.activeSelf) {
                     MouseStates.Instance.ChangeState(MouseStates.State.Hover);
                     if (Mouse.current.leftButton.wasPressedThisFrame)
                         SpawnDisk(disk, _computerPreview.transform.position);
                 }
+                else if (_roomDisk.activeSelf)
+                    MouseStates.Instance.ChangeState(MouseStates.State.Hover);
                 else
                     MouseStates.Instance.ChangeState(MouseStates.State.Error);
 
