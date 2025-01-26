@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using GameJammers.GGJ2025.Explodables;
@@ -5,6 +6,7 @@ using GameJammers.GGJ2025.FloppyDisks;
 using GameJammers.GGJ2025.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace GameJammers.GGJ2025.Bootstraps {
@@ -55,14 +57,34 @@ namespace GameJammers.GGJ2025.Bootstraps {
         public ExplodableCollection Explodables { get; } = new();
         public RamController Ram { get; } = new();
 
+        public event Action<bool> TacticalViewToggled;
+        public bool IsTacticalViewEnabled {
+            get => _isTacticalViewEnabled;
+            private set {
+                if (_isTacticalViewEnabled != value) {
+                    TacticalViewToggled?.Invoke(value);
+                }
+                _isTacticalViewEnabled = value;
+            }
+        }
+        bool _isTacticalViewEnabled = false;
+        InputAction _toggleTacticalViewAction;
+
+
         void Awake () {
             Instance = this;
             _loadingScreen.gameObject.SetActive(true);
             _exploder = new ExplodeController(this, Explodables, this);
+            IsTacticalViewEnabled = true;
+            _toggleTacticalViewAction = InputSystem.actions.FindAction("ToggleTacticalView");
+            _toggleTacticalViewAction.started += OnTacticalModeToggleOn;
+            _toggleTacticalViewAction.canceled += OnTacticalModeToggleOff;
         }
 
         void OnDestroy () {
             if (Instance == this) Instance = null;
+            _toggleTacticalViewAction.started -= OnTacticalModeToggleOn;
+            _toggleTacticalViewAction.canceled -= OnTacticalModeToggleOff;
         }
 
         void Start () {
@@ -192,5 +214,9 @@ namespace GameJammers.GGJ2025.Bootstraps {
         public void RestartLevel () {
             StartCoroutine(LoadNextLevelLoop(_currentLevelPath));
         }
+
+        private void OnTacticalModeToggleOn(InputAction.CallbackContext ctx) => IsTacticalViewEnabled = true;
+
+        private void OnTacticalModeToggleOff (InputAction.CallbackContext ctx) => IsTacticalViewEnabled = false;
     }
 }

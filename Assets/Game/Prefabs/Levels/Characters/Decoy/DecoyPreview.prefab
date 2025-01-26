@@ -34080,7 +34080,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2351089073426064822}
-  - component: {fileID: 7359521934584846089}
   m_Layer: 0
   m_Name: DecoyPreview
   m_TagString: Untagged
@@ -34105,19 +34104,6 @@ Transform:
   - {fileID: 8173667340741611206}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7359521934584846089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3223341956226152488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a716d127d8ff9e54297db54fca4df98d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _explosionRadius: {fileID: 689017127430021176}
 --- !u!1001 &5289663836737847042
 PrefabInstance:
   m_ObjectHideFlags: 0

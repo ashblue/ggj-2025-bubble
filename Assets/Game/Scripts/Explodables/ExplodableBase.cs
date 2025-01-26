@@ -1,9 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using GameJammers.GGJ2025.Bootstraps;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace GameJammers.GGJ2025.Explodables {
-    public abstract class ExplodableBase : MonoBehaviour, IExplodable {
+    public abstract class ExplodableBase : MonoBehaviour, IExplodable, ITacticalView {
         ExplodableCollection _collection;
 
         [Tooltip("Should this immediately explode when the red button is pressed?")]
@@ -18,6 +19,8 @@ namespace GameJammers.GGJ2025.Explodables {
         [SerializeField]
         TriggerExplodableTracker _explosionTrigger;
 
+
+
         public bool AutoExplode => _autoExplode;
         public bool IsObjective => _isObjective;
         public bool IsPrimed { get; private set; }
@@ -25,6 +28,8 @@ namespace GameJammers.GGJ2025.Explodables {
         void Start () {
             _collection = GameController.Instance.Explodables;
             _collection.Add(this);
+            ToggleView(GameController.Instance.IsTacticalViewEnabled);
+            GameController.Instance.TacticalViewToggled += ToggleView;
         }
 
         public void Explode () {
@@ -75,6 +80,9 @@ namespace GameJammers.GGJ2025.Explodables {
 
         protected virtual void OnDestroy () {
             _collection.Remove(this);
+            GameController.Instance.TacticalViewToggled -= ToggleView;
         }
+
+        public abstract void ToggleView (bool toggle);
     }
 }

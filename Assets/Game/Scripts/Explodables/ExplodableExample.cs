@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -36,6 +36,10 @@ namespace GameJammers.GGJ2025.Explodables {
             yield return tween.WaitForCompletion();
 
             _ready = true;
+        }
+
+        public override void ToggleView (bool toggle) {
+            _explosionGraphic.SetActive(toggle);
         }
 
         protected override bool GetIsAnimationComplete () {
