@@ -69,6 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _autoExplode: 0
   _isObjective: 1
+  _canDelete: 0
   BubbleTop: {fileID: 4632352856642918518}
   BubbleBottom: {fileID: 160113288654077734}
   BubbleArms: {fileID: 2961364543000624318}

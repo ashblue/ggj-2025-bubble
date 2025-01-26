@@ -18,7 +18,7 @@ MonoBehaviour:
     m_Bits: 1
   _levelLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 262336
   _diskPlacementLayer:
     serializedVersion: 2
     m_Bits: 128
