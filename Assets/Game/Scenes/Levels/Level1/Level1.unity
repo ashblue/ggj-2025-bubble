@@ -3502,6 +3502,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BubbleFriend
       objectReference: {fileID: 0}
+    - target: {fileID: 1035430010117324750, guid: b0a27ef37951b864cac3513d7b2672df, type: 3}
+      propertyPath: drawWireframeOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1605856345855858391, guid: b0a27ef37951b864cac3513d7b2672df, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3586,6 +3590,10 @@ PrefabInstance:
     - target: {fileID: 806826302353730073, guid: b0a27ef37951b864cac3513d7b2672df, type: 3}
       propertyPath: m_Name
       value: BubbleFriend (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035430010117324750, guid: b0a27ef37951b864cac3513d7b2672df, type: 3}
+      propertyPath: drawWireframeOnly
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1605856345855858391, guid: b0a27ef37951b864cac3513d7b2672df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8458,6 +8466,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BubbleFriend (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1035430010117324750, guid: b0a27ef37951b864cac3513d7b2672df, type: 3}
+      propertyPath: drawWireframeOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1605856345855858391, guid: b0a27ef37951b864cac3513d7b2672df, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.75
@@ -9737,6 +9749,10 @@ PrefabInstance:
     - target: {fileID: 806826302353730073, guid: b0a27ef37951b864cac3513d7b2672df, type: 3}
       propertyPath: m_Name
       value: BubbleFriend (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035430010117324750, guid: b0a27ef37951b864cac3513d7b2672df, type: 3}
+      propertyPath: drawWireframeOnly
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1605856345855858391, guid: b0a27ef37951b864cac3513d7b2672df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12013,6 +12029,10 @@ PrefabInstance:
     - target: {fileID: 806826302353730073, guid: 45bbd0c1b283f8d4e8dedfc50d01aa4e, type: 3}
       propertyPath: m_Name
       value: BubbleFriend_DecoyPrime
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035430010117324750, guid: 45bbd0c1b283f8d4e8dedfc50d01aa4e, type: 3}
+      propertyPath: drawWireframeOnly
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1605856345855858391, guid: 45bbd0c1b283f8d4e8dedfc50d01aa4e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16363,9 +16383,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelBootstrap
       objectReference: {fileID: 0}
+    - target: {fileID: 7816523894756514997, guid: b73136d5cf104b4439921a90c9d47ae1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816523894756514997, guid: b73136d5cf104b4439921a90c9d47ae1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816523894756514997, guid: b73136d5cf104b4439921a90c9d47ae1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816523894756514997, guid: b73136d5cf104b4439921a90c9d47ae1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7978120654162101703, guid: b73136d5cf104b4439921a90c9d47ae1, type: 3}
       propertyPath: _maxRam
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9141151858104804076, guid: b73136d5cf104b4439921a90c9d47ae1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9141151858104804076, guid: b73136d5cf104b4439921a90c9d47ae1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9141151858104804076, guid: b73136d5cf104b4439921a90c9d47ae1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9141151858104804076, guid: b73136d5cf104b4439921a90c9d47ae1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
