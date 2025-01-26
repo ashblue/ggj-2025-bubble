@@ -2,7 +2,7 @@ using GameJammers.GGJ2025.FloppyDisks;
 using UnityEngine;
 
 namespace GameJammers.GGJ2025.Explodables {
-    public abstract class ExplodableBase : MonoBehaviour, IExplodable {
+    public abstract class ExplodableBase : MonoBehaviour, IExplodable, ITacticalView {
         ExplodableCollection _collection;
 
         [Tooltip("Should this immediately explode when the red button is pressed?")]
@@ -20,6 +20,8 @@ namespace GameJammers.GGJ2025.Explodables {
         protected virtual void Start () {
             _collection = GameController.Instance.Explodables;
             _collection.Add(this);
+            ToggleView(GameController.Instance.IsTacticalViewEnabled);
+            GameController.Instance.TacticalViewToggled += ToggleView;
         }
 
         public void Explode () {
@@ -28,11 +30,12 @@ namespace GameJammers.GGJ2025.Explodables {
         }
 
         public void Prime () {
-            IsPrimed = true;
-            // Track this globally so we can wait for all explosions to resolve
-            _collection.AddExploding(this);
-            PlayAnimation(); // may hide this for now?
-
+            if (!IsPrimed) {
+                IsPrimed = true;
+                // Track this globally so we can wait for all explosions to resolve
+                _collection.AddExploding(this);
+                PlayAnimation(); // may hide this for now?
+            }
         }
 
         void PlayAnimation() {
@@ -52,7 +55,12 @@ namespace GameJammers.GGJ2025.Explodables {
         protected virtual void OnExplosionComplete() {}
 
         protected virtual void OnDestroy () {
+            if (GameController.Instance != null) { 
+                GameController.Instance.TacticalViewToggled -= ToggleView;
+            }
             _collection.Cleanup(this);
         }
+
+        public abstract void ToggleView (bool toggle);
     }
 }

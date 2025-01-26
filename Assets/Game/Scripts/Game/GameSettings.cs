@@ -1,5 +1,6 @@
-﻿using CleverCrow.Fluid.SimpleSettings;
+using CleverCrow.Fluid.SimpleSettings;
 using UnityEngine;
+
 
 namespace GameJammers.GGJ2025.FloppyDisks {
     /// <summary>
@@ -7,6 +8,12 @@ namespace GameJammers.GGJ2025.FloppyDisks {
     /// </summary>
     [CreateAssetMenu(fileName = "GameSettings", menuName = "Custom/GameSettings")]
     public class GameSettings : SettingsBase<GameSettings> {
+
+        [Tooltip("Steepest slope a disk can be placed on in degrees. Max limited to vertical (90 deg)")]
+        [Range(0f, 90f)]
+        [field: SerializeField]
+        public float MaxPlacementSlopeAngle { get; private set; }
+
         [Tooltip("Declare all valid room layers")]
         [SerializeField]
         LayerMask _roomLayer;
