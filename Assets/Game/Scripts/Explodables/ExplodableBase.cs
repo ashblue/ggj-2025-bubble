@@ -79,7 +79,9 @@ namespace GameJammers.GGJ2025.Explodables {
 
         protected virtual void OnDestroy () {
             _collection.Remove(this);
-            GameController.Instance.TacticalViewToggled -= ToggleView;
+            if (GameController.Instance != null ) { 
+                GameController.Instance.TacticalViewToggled -= ToggleView;
+            }
         }
 
         public abstract void ToggleView (bool toggle);

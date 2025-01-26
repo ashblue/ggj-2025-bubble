@@ -23,7 +23,6 @@ namespace GameJammers.GGJ2025.Explodables {
         }
 
         IEnumerator PlayLoop () {
-            //_explosionGraphic.SetActive(true);
             var targetScale = _explosionGraphic.transform.localScale;
             _explosionGraphic.transform.localScale = Vector3.zero;
 
