@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec324de5ce524000b3b33e2f9d660971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ram: 1
   _roomPrefab: {fileID: 4678134488776663805, guid: 19740b1e05495c04499a23b2f8306618, type: 3}
   _computerPreviewPrefab: {fileID: 3223341956226152488, guid: c54b62f9a70547648923d5d748685543, type: 3}
   _computerPrefab: {fileID: 806826302353730073, guid: c52bb8fffe16b9b49a9359371b00ff8a, type: 3}
@@ -152,6 +153,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 247048a472323c04490197f7d035cd8a, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 247048a472323c04490197f7d035cd8a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 247048a472323c04490197f7d035cd8a, type: 3}
       propertyPath: m_Name
