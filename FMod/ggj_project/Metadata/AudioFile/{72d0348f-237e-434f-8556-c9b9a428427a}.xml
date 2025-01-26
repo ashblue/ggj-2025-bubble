@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{72d0348f-237e-434f-8556-c9b9a428427a}">
+		<property name="assetPath">
+			<value>SFX/Bubble Sound Effect - Menu Nav - GGJ 7.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.15673469387755101</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e207a1b0-ac4b-492f-ab98-94711a90da70}</destination>
+		</relationship>
+	</object>
+</objects>

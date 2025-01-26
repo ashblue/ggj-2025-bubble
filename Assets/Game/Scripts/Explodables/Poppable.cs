@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 using GameJammers.GGJ2025.FloppyDisks;
+using FMODUnity;
 
 namespace GameJammers.GGJ2025.Explodables
 {
@@ -97,6 +98,10 @@ namespace GameJammers.GGJ2025.Explodables
 
             float distortDuration = popDuration * 0.5f;
             float distortStart = popStart * 1.5f;
+
+            popSequence.InsertCallback(distortStart - 0.1f, () => FMODUnity.RuntimeManager.PlayOneShot("event:/Pop", transform.position));
+
+
             popSequence.InsertCallback(distortStart, () => DistortionArea.SetActive(true));
             popSequence.Insert(distortStart, DistortionAreaMat.DOFloat(1, "_DistortStep", distortDuration));
             popSequence.InsertCallback(distortStart, PopOthers);
