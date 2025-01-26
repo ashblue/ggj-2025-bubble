@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-namespace GameJammers.GGJ2025.Bootstraps {
+namespace GameJammers.GGJ2025.FloppyDisks {
     public class GameController : MonoBehaviour, ICoroutineRunner {
         public static GameController Instance { get; private set; }
 
@@ -171,7 +171,6 @@ namespace GameJammers.GGJ2025.Bootstraps {
             // Reset the game state
             SetState(GameState.Placement);
             CursorInteractController.Instance.Reset();
-            Ram.Reset();
         }
 
         void ShowLoadingScreen () {
