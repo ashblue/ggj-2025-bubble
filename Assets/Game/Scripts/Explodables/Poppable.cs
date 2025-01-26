@@ -84,10 +84,12 @@ namespace GameJammers.GGJ2025.Explodables
             popSequence.InsertCallback(popStart + popDuration, () =>  BubbleBottom.gameObject.SetActive(false));
             popSequence.InsertCallback(popStart + popDuration, () =>  BubbleArms.gameObject.SetActive(false));
 
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Pop", transform.position);
-
             float distortDuration = popDuration * 0.5f;
             float distortStart = popStart * 1.5f;
+
+            popSequence.InsertCallback(distortStart - 0.1f, () => FMODUnity.RuntimeManager.PlayOneShot("event:/Pop", transform.position));
+
+
             popSequence.InsertCallback(distortStart, () => DistortionArea.SetActive(true));
             popSequence.Insert(distortStart, DistortionAreaMat.DOFloat(1, "_DistortStep", distortDuration));
             popSequence.InsertCallback(distortStart, PopOthers);
