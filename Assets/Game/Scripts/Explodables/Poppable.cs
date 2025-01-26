@@ -47,6 +47,9 @@ namespace GameJammers.GGJ2025.Explodables
 
         private Sequence popSequence;
         public bool canPop = true;
+
+        public override bool IsPoppedSuccess => !canPop;
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         protected override void Start()
         {
@@ -183,7 +186,6 @@ namespace GameJammers.GGJ2025.Explodables
         protected override void OnExplosionComplete () {
             // This hook triggers after the hit objects have been exploded
             //Destroy(gameObject);
-            GameController.Instance.Explodables.Remove(this);
             // TODO Schedule cleanup?
         }
 
