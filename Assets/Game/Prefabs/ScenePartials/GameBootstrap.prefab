@@ -492,7 +492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomScenePath: Assets/Game/Scenes/Room/Room.unity
   _levelScenePaths:
-  - Assets/Game/Scenes/Levels/Level2/Level2.unity
+  - Assets/Game/Scenes/Levels/Level1/Level1.unity
   - Assets/Game/LFS/Level4-d.unity
   - Assets/Game/LFS/Level3.unity
   _tmpCamera: {fileID: 4986365644928828148}
