@@ -33,6 +33,8 @@ namespace GameJammers.GGJ2025.Explodables
 
         private SphereCollider popSphereCollider;
 
+        private Animator popAnimator;
+
         public GameObject ExplosionHighlightPrefab;
 
         [NonSerialized] public GameObject ExplosionHighlight;
@@ -58,6 +60,7 @@ namespace GameJammers.GGJ2025.Explodables
             ExplosionHighlight.transform.localScale *= PopRadius;
             ExplosionHighlight.SetActive(false); // highlight hooks to add
 
+            popAnimator = GetComponentInChildren<Animator>();
 
             //popSequence = DOTween.Sequence();
 
@@ -74,6 +77,11 @@ namespace GameJammers.GGJ2025.Explodables
             popSequence = DOTween.Sequence();
             float popDuration = 0.5f;
             float popStart = popDuration * 0.5f;
+
+            popSequence.InsertCallback(0, (() => {
+                popAnimator.SetTrigger("Explode");
+            }));
+
             popSequence.Insert(popStart, BubbleTopMat.DOFloat(1, "_PopStep", popDuration));
             popSequence.Insert(popStart, BubbleBottomMat.DOFloat(1, "_PopStep", popDuration));
             popSequence.Insert(popStart, BubbleArmsMat.DOFloat(1, "_PopStep", popDuration));
