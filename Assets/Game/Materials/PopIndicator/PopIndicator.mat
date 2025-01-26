@@ -105,6 +105,9 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _MinAlpha: 0.03
+    - _NoiseScale: 19.42
+    - _NoiseSpeed: 0.2
+    - _NoiseStr: -1.2
     - _OcclusionStrength: 1
     - _Offset: -0.05
     - _Parallax: 0.005

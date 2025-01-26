@@ -13,6 +13,7 @@ namespace GameJammers.GGJ2025.Explodables
         public VisualEffect bubbleVfx;
         public float PopDelayMin = 0.05f;
         public float PopDelayMax = 0.3f;
+        public Vector3 PopOffset = new Vector3(0f, 2.2f, 0f);
         private Queue<Poppable> queuedPops;
         List<Poppable> pops;
         private float nextPopAllowedTime;
@@ -47,7 +48,7 @@ namespace GameJammers.GGJ2025.Explodables
             {
                 countingDownGameOver = false;
                 var pop = queuedPops.Dequeue();
-                bubbleVfx.SetVector3("SpawnPositionWs", pop.transform.position);
+                bubbleVfx.SetVector3("SpawnPositionWs", pop.transform.position + PopOffset);
                 bubbleVfx.SendEvent("OnPop");
                 pop.Pop();
                 nextPopAllowedTime = Time.time + Random.Range(PopDelayMin, PopDelayMax);
