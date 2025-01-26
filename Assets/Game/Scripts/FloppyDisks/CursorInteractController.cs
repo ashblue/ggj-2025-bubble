@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using GameJammers.GGJ2025.Cameras;
 using UnityEngine;
@@ -32,6 +32,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
             HoldingDiskComputer,
             Lock,
         }
+
 
         void Awake () {
             if (_instance) {
@@ -93,7 +94,13 @@ namespace GameJammers.GGJ2025.FloppyDisks {
 
                         // Only target ground so we know it's safe to place the prefab there
                         var groundLayer = GameSettings.Current.DiskPlacementLayer;
-                        if (groundLayer == (groundLayer | (1 << target.layer))) {
+                        bool isGround = groundLayer == (groundLayer | (1 << target.layer));
+
+                        // can't place if the ground is too steep
+                        var normal = _pipToCamera.LastPipRay.normal;
+                        bool isTooSteep = Vector3.Angle(normal, Vector3.up) > GameSettings.Current.MaxPlacementSlopeAngle;
+
+                        if (isGround && !isTooSteep) {
                             _computerPreview.SetActive(true);
                             var position = _pipToCamera.LastPipRay.point;
                             ShowDiskPreview(position);
@@ -104,13 +111,19 @@ namespace GameJammers.GGJ2025.FloppyDisks {
                     _computerPreview.SetActive(false);
                 }
 
-                if (Mouse.current.leftButton.wasPressedThisFrame && _computerPreview.activeSelf) {
-                    SpawnDisk(disk, _computerPreview.transform.position);
+                if (_computerPreview.activeSelf) {
+                    MouseStates.Instance.ChangeState(MouseStates.State.Hover);
+                    if (Mouse.current.leftButton.wasPressedThisFrame)
+                        SpawnDisk(disk, _computerPreview.transform.position);
                 }
+                else if (_roomDisk.activeSelf)
+                    MouseStates.Instance.ChangeState(MouseStates.State.Hover);
+                else
+                    MouseStates.Instance.ChangeState(MouseStates.State.Error);
 
                 yield return null;
             }
-
+            MouseStates.Instance.ChangeState(MouseStates.State.Default);
             _loop = null;
         }
 
@@ -130,6 +143,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
             if (_loop != null) StopCoroutine(_loop);
             if (_roomDisk) Destroy(_roomDisk);
             if (_computerPreview) Destroy(_computerPreview);
+            MouseStates.Instance.ChangeState(MouseStates.State.Default);
             _state = State.HandEmpty;
             _loop = null;
         }

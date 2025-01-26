@@ -372,13 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraMain: {fileID: 2574999831214573045}
-  _cameraMainLayer:
-    serializedVersion: 2
-    m_Bits: 1
   _cameraPip: {fileID: 0}
-  _cameraPipLayer:
-    serializedVersion: 2
-    m_Bits: 192
 --- !u!64 &3661969850343724516
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -488,9 +482,6 @@ MonoBehaviour:
   _roomCamera: {fileID: 2574999831214573045}
   _cursorWorldZLock: 1.35
   _pipToCamera: {fileID: 7780878832867518178}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!1 &4286162681845997626
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,7 +673,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2510
+  m_VersionIndex: 2534
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1036,7 +1027,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4880
+  m_VersionIndex: 4904
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1154,6 +1145,8 @@ GameObject:
   - component: {fileID: 7164266448834470360}
   - component: {fileID: 3645190743468169108}
   - component: {fileID: 949730916723979936}
+  - component: {fileID: 1578088732436318710}
+  - component: {fileID: 5648094807315294411}
   m_Layer: 0
   m_Name: BigRedButton
   m_TagString: Untagged
@@ -2378,7 +2371,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3266
+  m_VersionIndex: 3290
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2485,6 +2478,36 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &1578088732436318710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6571495125072864566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec8a1c076044cd08147dac9e8ee4cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5648094807315294411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6571495125072864566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 1, b: 0, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &6919068804173311481
 GameObject:
   m_ObjectHideFlags: 0
@@ -3219,7 +3242,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 10127
+  m_VersionIndex: 10151
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

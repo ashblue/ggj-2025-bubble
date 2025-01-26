@@ -1,9 +1,8 @@
-﻿using System.Collections;
 using GameJammers.GGJ2025.FloppyDisks;
 using UnityEngine;
 
 namespace GameJammers.GGJ2025.Explodables {
-    public abstract class ExplodableBase : MonoBehaviour, IExplodable {
+    public abstract class ExplodableBase : MonoBehaviour, IExplodable, ITacticalView {
         ExplodableCollection _collection;
 
         [Tooltip("Should this immediately explode when the red button is pressed?")]
@@ -14,47 +13,29 @@ namespace GameJammers.GGJ2025.Explodables {
         [SerializeField]
         bool _isObjective;
 
-        [Tooltip("You can use any explosion shape you want. The trigger area just needs to have a TriggerExplodableTracker on it.")]
-        [SerializeField]
-        TriggerExplodableTracker _explosionTrigger;
-
         public bool AutoExplode => _autoExplode;
         public bool IsObjective => _isObjective;
-        public bool IsPrimed { get; private set; }
+        public bool IsPrimed { get; private set; } // now only used for scoring
 
-        void Start () {
+        protected virtual void Start () {
             _collection = GameController.Instance.Explodables;
             _collection.Add(this);
+            ToggleView(GameController.Instance.IsTacticalViewEnabled);
+            GameController.Instance.TacticalViewToggled += ToggleView;
         }
 
         public void Explode () {
-            StartCoroutine(ExplosionLoop());
+            //StartCoroutine(ExplosionLoop());
+            PopManager.Instance.AddPopToQueue(GetComponent<Poppable>()); // always extended by poppable. Could rework, no time
         }
 
-        IEnumerator ExplosionLoop () {
-            // Prevent recursive detonations by setting the primed flag
-            IsPrimed = true;
-
-            // Track this globally so we can wait for all explosions to resolve
-            _collection.AddExploding(this);
-
-            PlayAnimation();
-
-            while (!GetIsAnimationComplete()) {
-                yield return null;
+        public void Prime () {
+            if (!IsPrimed) {
+                IsPrimed = true;
+                // Track this globally so we can wait for all explosions to resolve
+                _collection.AddExploding(this);
+                PlayAnimation(); // may hide this for now?
             }
-
-            // Find all explodables inside the explosion area
-            foreach (var target in _explosionTrigger.TrackedObjects) {
-                if (!target.IsPrimed) {
-                    target.Explode();
-                }
-            }
-
-            // Inform the game state that this explosion has resolved
-            _collection.RemoveExploding(this);
-
-            ExplosionComplete();
         }
 
         void PlayAnimation() {
@@ -67,14 +48,19 @@ namespace GameJammers.GGJ2025.Explodables {
             return true;
         }
 
-        void ExplosionComplete() {
+        protected void ExplosionComplete() {
             OnExplosionComplete();
         }
 
         protected virtual void OnExplosionComplete() {}
 
         protected virtual void OnDestroy () {
-            _collection.Remove(this);
+            if (GameController.Instance != null) { 
+                GameController.Instance.TacticalViewToggled -= ToggleView;
+            }
+            _collection.Cleanup(this);
         }
+
+        public abstract void ToggleView (bool toggle);
     }
 }
