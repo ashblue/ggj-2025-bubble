@@ -74,8 +74,8 @@ MonoBehaviour:
   BubbleArms: {fileID: 2961364543000624318}
   Body: {fileID: 1620312113762439117}
   DistortionArea: {fileID: 4637887953976542003}
-  PostPopImpulseForce: 8
-  PopRadius: 7
+  PostPopImpulseForce: 10
+  PopRadius: 10
   popDelay: 0.05
   PoppableLayerMask:
     serializedVersion: 2
