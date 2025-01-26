@@ -87,7 +87,7 @@ namespace GameJammers.GGJ2025.Explodables {
         protected virtual void OnExplosionComplete() {}
 
         protected virtual void OnDestroy () {
-            _collection.Remove(this);
+            _collection.Cleanup(this);
         }
     }
 }

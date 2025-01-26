@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 using GameJammers.GGJ2025.FloppyDisks;
+using UnityEditor.Build.Content;
 
 namespace GameJammers.GGJ2025.Explodables
 {
@@ -168,7 +169,9 @@ namespace GameJammers.GGJ2025.Explodables
 
         protected override void OnExplosionComplete () {
             // This hook triggers after the hit objects have been exploded
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            GameController.Instance.Explodables.Remove(this);
+            // TODO Schedule cleanup?
         }
     }
 }

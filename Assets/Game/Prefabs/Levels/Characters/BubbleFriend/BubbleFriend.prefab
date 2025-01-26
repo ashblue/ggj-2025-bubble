@@ -44,12 +44,12 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -74,7 +74,7 @@ MonoBehaviour:
   BubbleArms: {fileID: 2961364543000624318}
   Body: {fileID: 1620312113762439117}
   DistortionArea: {fileID: 4637887953976542003}
-  PostPopImpulseForce: 5
+  PostPopImpulseForce: 8
   PopRadius: 5
   popDelay: 0.05
   PoppableLayerMask:
