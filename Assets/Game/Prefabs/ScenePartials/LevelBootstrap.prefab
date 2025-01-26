@@ -1843,7 +1843,8 @@ MonoBehaviour:
   _bounds:
     _position: {x: -16.3, y: -7.93}
     _size: {x: 20, y: 20}
-  _moveSpeed: 15
+  _moveSpeed: 22
+  _rotateSpeed: 80
 --- !u!1 &8077744640300079815
 GameObject:
   m_ObjectHideFlags: 0
