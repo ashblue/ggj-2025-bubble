@@ -111,13 +111,19 @@ namespace GameJammers.GGJ2025.FloppyDisks {
                     _computerPreview.SetActive(false);
                 }
 
-                if (Mouse.current.leftButton.wasPressedThisFrame && _computerPreview.activeSelf) {
-                    SpawnDisk(disk, _computerPreview.transform.position);
+                if (_computerPreview.activeSelf) {
+                    MouseStates.Instance.ChangeState(MouseStates.State.Hover);
+                    if (Mouse.current.leftButton.wasPressedThisFrame)
+                        SpawnDisk(disk, _computerPreview.transform.position);
                 }
+                else if (_roomDisk.activeSelf)
+                    MouseStates.Instance.ChangeState(MouseStates.State.Hover);
+                else
+                    MouseStates.Instance.ChangeState(MouseStates.State.Error);
 
                 yield return null;
             }
-
+            MouseStates.Instance.ChangeState(MouseStates.State.Default);
             _loop = null;
         }
 
@@ -136,9 +142,8 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         void Stop () {
             if (_loop != null) StopCoroutine(_loop);
             if (_roomDisk) Destroy(_roomDisk);
-            if (_computerPreview) {
-                Destroy(_computerPreview);
-            }
+            if (_computerPreview) Destroy(_computerPreview);
+            MouseStates.Instance.ChangeState(MouseStates.State.Default);
             _state = State.HandEmpty;
             _loop = null;
         }
