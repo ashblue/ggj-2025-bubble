@@ -94,7 +94,13 @@ namespace GameJammers.GGJ2025.FloppyDisks {
 
                         // Only target ground so we know it's safe to place the prefab there
                         var groundLayer = GameSettings.Current.DiskPlacementLayer;
-                        if (groundLayer == (groundLayer | (1 << target.layer))) {
+                        bool isGround = groundLayer == (groundLayer | (1 << target.layer));
+
+                        // can't place if the ground is too steep
+                        var normal = _pipToCamera.LastPipRay.normal;
+                        bool isTooSteep = Vector3.Angle(normal, Vector3.up) > GameSettings.Current.MaxPlacementSlopeAngle;
+
+                        if (isGround && !isTooSteep) {
                             _computerPreview.SetActive(true);
                             var position = _pipToCamera.LastPipRay.point;
                             ShowDiskPreview(position);
