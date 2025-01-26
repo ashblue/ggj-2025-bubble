@@ -37,6 +37,8 @@ namespace GameJammers.GGJ2025.Explodables
 
         [NonSerialized] public GameObject ExplosionHighlight;
 
+        [Header("Gizmo")] public bool drawWireframeOnly = true;
+
         private Sequence popSequence;
         public bool canPop = true;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -170,6 +172,19 @@ namespace GameJammers.GGJ2025.Explodables
 
         public override void ToggleView (bool toggle) {
             ExplosionHighlight.SetActive(toggle);
+        }
+
+        void OnDrawGizmos () {
+            Gizmos.color = Color.red;
+
+            if (drawWireframeOnly) {
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(transform.position, PopRadius);
+            }
+            else {
+                Gizmos.color = new Color(1f, 0f, 0f, 0.2f);
+                Gizmos.DrawSphere(transform.position, PopRadius);
+            }
         }
     }
 }

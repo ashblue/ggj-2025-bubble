@@ -53,7 +53,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 2
   m_Center: {x: 0, y: 2.278, z: 0}
 --- !u!114 &1035430010117324750
 MonoBehaviour:
@@ -74,13 +74,14 @@ MonoBehaviour:
   BubbleArms: {fileID: 2961364543000624318}
   Body: {fileID: 1620312113762439117}
   DistortionArea: {fileID: 4637887953976542003}
-  PostPopImpulseForce: 8
-  PopRadius: 5
+  PostPopImpulseForce: 10
+  PopRadius: 10
   popDelay: 0.05
   PoppableLayerMask:
     serializedVersion: 2
     m_Bits: 262144
   ExplosionHighlightPrefab: {fileID: 1130294243807286995, guid: cb27e22b39be2ca48b8cd613065d3c21, type: 3}
+  drawWireframeOnly: 1
   canPop: 1
 --- !u!1001 &594525061321235440
 PrefabInstance:
