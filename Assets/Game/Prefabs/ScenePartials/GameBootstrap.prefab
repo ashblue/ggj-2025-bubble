@@ -494,6 +494,7 @@ MonoBehaviour:
   - Assets/Game/Scenes/Levels/Level1/Level1.unity
   - Assets/Game/Scenes/Levels/Level2/Level2.unity
   - Assets/Game/Scenes/Levels/Level3-z/Level3.unity
+  - Assets/Game/Scenes/Levels/Level4-d/Level4-d.unity
   _tmpCamera: {fileID: 4986365644928828148}
   _loadingScreen: {fileID: 6441078315357749256}
   _gameCompleteScreen: {fileID: 8979626461177381441}
