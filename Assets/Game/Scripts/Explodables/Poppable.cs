@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using DG.Tweening;
+using GameJammers.GGJ2025.Emote;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -33,11 +34,13 @@ namespace GameJammers.GGJ2025.Explodables
 
         private SphereCollider popSphereCollider;
 
-        private Animator popAnimator;
+        public EmoteSystem emoteSystem;
 
         public GameObject ExplosionHighlightPrefab;
 
         [NonSerialized] public GameObject ExplosionHighlight;
+
+        public event Action OnPop;
 
         [Header("Gizmo")] public bool drawWireframeOnly = true;
 
@@ -60,8 +63,6 @@ namespace GameJammers.GGJ2025.Explodables
             ExplosionHighlight.transform.localScale *= PopRadius;
             ExplosionHighlight.SetActive(false); // highlight hooks to add
 
-            popAnimator = GetComponentInChildren<Animator>();
-
             //popSequence = DOTween.Sequence();
 
             base.Start();
@@ -74,12 +75,15 @@ namespace GameJammers.GGJ2025.Explodables
                 Prime();
             }
 
+            OnPop?.Invoke();
+
             popSequence = DOTween.Sequence();
             float popDuration = 0.5f;
             float popStart = popDuration * 0.5f;
 
-            popSequence.InsertCallback(0, (() => {
-                popAnimator.SetTrigger("Explode");
+            popSequence.AppendCallback((() => {
+                emoteSystem.animator.SetTrigger("Explode");
+                emoteSystem.HandlePop();
             }));
 
             popSequence.Insert(popStart, BubbleTopMat.DOFloat(1, "_PopStep", popDuration));
