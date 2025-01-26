@@ -13,6 +13,10 @@ namespace GameJammers.GGJ2025.Explodables {
         [SerializeField]
         bool _isObjective;
 
+        [Tooltip("Can the player delete this explodable")]
+        [SerializeField]
+        bool _canDelete;
+
         public bool AutoExplode => _autoExplode;
         public bool IsObjective => _isObjective;
         public bool IsPrimed { get; private set; } // now only used for scoring
@@ -38,6 +42,13 @@ namespace GameJammers.GGJ2025.Explodables {
             }
         }
 
+        public void Delete () {
+            if (!_canDelete || IsPrimed) { return; }
+            _collection.Remove(this);
+            _collection = null;
+            Destroy(gameObject);
+        }
+
         void PlayAnimation() {
             OnPlayAnimation();
         }
@@ -59,9 +70,7 @@ namespace GameJammers.GGJ2025.Explodables {
                 GameController.Instance.TacticalViewToggled -= ToggleView;
             }
 
-            if (_collection != null) {
-                _collection.Cleanup(this);
-            }
+            _collection?.Cleanup(this);
         }
 
         public abstract void ToggleView (bool toggle);

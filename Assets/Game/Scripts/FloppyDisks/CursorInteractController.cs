@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using GameJammers.GGJ2025.Cameras;
+using GameJammers.GGJ2025.Explodables;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,6 +27,8 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         [SerializeField]
         PipToCameraCast _pipToCamera;
 
+        InputAction _deleteAction;
+
         enum State {
             HandEmpty,
             HoldingDiskRoom,
@@ -42,10 +45,25 @@ namespace GameJammers.GGJ2025.FloppyDisks {
             }
 
             _instance = this;
+            _deleteAction = InputSystem.actions.FindAction("RightClick");
+            _deleteAction.performed += OnDeletePressed;
         }
+
 
         void OnDestroy () {
             if (_instance == this) _instance = null;
+            _deleteAction.performed -= OnDeletePressed;
+        }
+
+        void OnDeletePressed (InputAction.CallbackContext _) {
+            if (_state == State.HoldingDiskRoom) { return; }
+
+            if (_pipToCamera.IsMouseHover && _pipToCamera.HasPipWorldPosition) {
+                var collider = _pipToCamera.LastPipRay.collider;
+                if (collider != null &&collider.TryGetComponent(out ExplodableBase target)) {
+                    target.Delete();
+                }
+            }
         }
 
         public void Add (FloppyDisk disk) {

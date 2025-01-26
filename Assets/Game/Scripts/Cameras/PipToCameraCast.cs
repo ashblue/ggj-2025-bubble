@@ -97,7 +97,7 @@ namespace GameJammers.GGJ2025.Cameras {
 
             // Cast a ray from the camera to the pip world for physical surfaces
             var pipLayer = GameSettings.Current.LevelLayer;
-            if (!Physics.Raycast(renderRay, out var renderHit, Mathf.Infinity, pipLayer, QueryTriggerInteraction.Ignore)) {
+            if (!Physics.Raycast(renderRay, out var renderHit, Mathf.Infinity, pipLayer, QueryTriggerInteraction.Collide)) {
                 return (null, true);
             }
 
