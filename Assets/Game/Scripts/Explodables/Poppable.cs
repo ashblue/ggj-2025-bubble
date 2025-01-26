@@ -72,6 +72,11 @@ namespace GameJammers.GGJ2025.Explodables
 
         public void Pop()
         {
+            // if not primed, then prime // happens for the auto explode ones
+            if (!IsPrimed) {
+                Prime();
+            }
+
             popSequence = DOTween.Sequence();
             float popDuration = 0.5f;
             float popStart = popDuration * 0.5f;
@@ -97,6 +102,7 @@ namespace GameJammers.GGJ2025.Explodables
             // Inform the game state that this explosion has resolved
             popSequence.AppendCallback(() => GameController.Instance.Explodables.RemoveExploding(this));
             popSequence.AppendCallback(ExplosionComplete);
+            popSequence.AppendCallback(PopManager.Instance.CheckDone);
 
         }
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.VFX;
 using GameJammers.GGJ2025.FloppyDisks;
@@ -15,7 +16,6 @@ namespace GameJammers.GGJ2025.Explodables
         private Queue<Poppable> queuedPops;
         List<Poppable> pops;
         private float nextPopAllowedTime;
-        private bool _isDone;
 
         // todo stop vfx if nothing comes through the queue for a time?
 
@@ -48,19 +48,13 @@ namespace GameJammers.GGJ2025.Explodables
                 pop.Pop();
                 nextPopAllowedTime = Time.time + Random.Range(PopDelayMin, PopDelayMax);
             }
-
-            if (_isDone) {
-                // done with popping
-                // trigger score tally
-                ScoreBoardController.Instance.Play();
-            }
         }
 
         public void CheckDone () {
             // reported from poppables
             // after sequence, check to see if any explodables are still exploding
-            if (GameController.Instance.Explodables.ItemsExploding.Count == 0) {
-                _isDone = true;
+            if (queuedPops.Count == 0 && GameController.Instance.Explodables.ItemsExploding.Count == 0) {
+                ScoreBoardController.Instance.Play();
             }
         }
 
