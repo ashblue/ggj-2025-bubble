@@ -17,6 +17,9 @@ namespace GameJammers.GGJ2025.Explodables
         List<Poppable> pops;
         private float nextPopAllowedTime;
 
+        private bool countingDownGameOver = false;
+        private float timeTilGameOver = 3f;
+
         // todo stop vfx if nothing comes through the queue for a time?
 
         private void Awake()
@@ -42,11 +45,21 @@ namespace GameJammers.GGJ2025.Explodables
         {
             if (queuedPops.Count > 0 && Time.time >= nextPopAllowedTime)
             {
+                countingDownGameOver = false;
                 var pop = queuedPops.Dequeue();
                 bubbleVfx.SetVector3("SpawnPositionWs", pop.transform.position);
                 bubbleVfx.SendEvent("OnPop");
                 pop.Pop();
                 nextPopAllowedTime = Time.time + Random.Range(PopDelayMin, PopDelayMax);
+                return;
+            }
+
+            if (countingDownGameOver) {
+                timeTilGameOver -= Time.deltaTime;
+                if (timeTilGameOver < 0) {
+                    countingDownGameOver = false;
+                    ScoreBoardController.Instance.Play();
+                }
             }
         }
 
@@ -54,7 +67,8 @@ namespace GameJammers.GGJ2025.Explodables
             // reported from poppables
             // after sequence, check to see if any explodables are still exploding
             if (queuedPops.Count == 0 && GameController.Instance.Explodables.ItemsExploding.Count == 0) {
-                ScoreBoardController.Instance.Play();
+                timeTilGameOver = 3f;
+                countingDownGameOver = true;
             }
         }
 
