@@ -189,6 +189,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3678934128948695258, guid: c1cd3b3cd7113e849a78f92a47992003, type: 3}
+      propertyPath: '_levelScenePaths.Array.data[0]'
+      value: Assets/Game/Scenes/Levels/Level1/Level1.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678934128948695258, guid: c1cd3b3cd7113e849a78f92a47992003, type: 3}
+      propertyPath: '_levelScenePaths.Array.data[1]'
+      value: Assets/Game/Scenes/Levels/Level2/Level2.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678934128948695258, guid: c1cd3b3cd7113e849a78f92a47992003, type: 3}
+      propertyPath: '_levelScenePaths.Array.data[2]'
+      value: Assets/Game/Scenes/Levels/Level3-z/Level3.unity
+      objectReference: {fileID: 0}
     - target: {fileID: 4249507425160009936, guid: c1cd3b3cd7113e849a78f92a47992003, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

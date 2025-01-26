@@ -16303,6 +16303,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 500981597}
+    - target: {fileID: 2821421470432038374, guid: b73136d5cf104b4439921a90c9d47ae1, type: 3}
+      propertyPath: m_UnmodifiedMeshVersion
+      value: 7187
+      objectReference: {fileID: 0}
     - target: {fileID: 2853379105035992369, guid: b73136d5cf104b4439921a90c9d47ae1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -16349,7 +16353,7 @@ PrefabInstance:
       objectReference: {fileID: 500981597}
     - target: {fileID: 3503154219098666923, guid: b73136d5cf104b4439921a90c9d47ae1, type: 3}
       propertyPath: m_VersionIndex
-      value: 7177
+      value: 7187
       objectReference: {fileID: 0}
     - target: {fileID: 5807760904998605837, guid: b73136d5cf104b4439921a90c9d47ae1, type: 3}
       propertyPath: m_Mesh
