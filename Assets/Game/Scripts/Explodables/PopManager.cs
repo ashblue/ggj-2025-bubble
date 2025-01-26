@@ -1,34 +1,36 @@
 using System.Collections.Generic;
-
+using GameJammers.GGJ2025.Bootstraps;
 using UnityEngine;
 using UnityEngine.VFX;
 
-namespace GameJammers.GGJ2025.Bubble
+namespace GameJammers.GGJ2025.Explodables
 {
     public class PopManager : MonoBehaviour
     {
         public static PopManager Instance;
 
         public VisualEffect bubbleVfx;
-        public float PopDelayMin = 0.01f;
+        public float PopDelayMin = 0.05f;
         public float PopDelayMax = 0.3f;
         private Queue<Poppable> queuedPops;
+        List<Poppable> pops;
         private float nextPopAllowedTime;
-        
+        private bool _isDone;
+
         // todo stop vfx if nothing comes through the queue for a time?
-        
-        private void Awake() 
-        { 
-            if (Instance != null && Instance != this) 
-            { 
-                Destroy(this); 
-            } 
-            else 
-            { 
-                Instance = this; 
-            } 
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                Instance = this;
+            }
         }
-        
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -46,6 +48,20 @@ namespace GameJammers.GGJ2025.Bubble
                 pop.Pop();
                 nextPopAllowedTime = Time.time + Random.Range(PopDelayMin, PopDelayMax);
             }
+
+            if (_isDone) {
+                // done with popping
+                // trigger score tally
+                ScoreBoardController.Instance.Play();
+            }
+        }
+
+        public void CheckDone () {
+            // reported from poppables
+            // after sequence, check to see if any explodables are still exploding
+            if (GameController.Instance.Explodables.ItemsExploding.Count == 0) {
+                _isDone = true;
+            }
         }
 
         public void AddPopToQueue(Poppable poppable)
@@ -56,6 +72,7 @@ namespace GameJammers.GGJ2025.Bubble
                 queuedPops.Enqueue(poppable);
             }
         }
+
 
         public void AddPopToQueue(Poppable[] poppables)
         {

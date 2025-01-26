@@ -1,5 +1,5 @@
 using System;
-using GameJammers.GGJ2025.Bubble;
+using GameJammers.GGJ2025.Explodables;
 using GameJammers.GGJ2025.Emote.Behaviors;
 using UnityEngine;
 using System.Linq;

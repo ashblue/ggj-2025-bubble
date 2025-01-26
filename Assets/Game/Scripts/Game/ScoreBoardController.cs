@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
+using System.Linq;
 
 namespace GameJammers.GGJ2025.Bootstraps {
     public class ScoreBoardController : MonoBehaviour {
@@ -26,7 +27,14 @@ namespace GameJammers.GGJ2025.Bootstraps {
             if (Instance == this) Instance = null;
         }
 
-        public void Play (int objectives, int objectivesComplete, int ramMax, int ramScore) {
+        public void Play () {
+            var ramMax = GameController.Instance.Ram.Max;
+            var ramScore = GameController.Instance.Ram.Current;
+
+            var objectives = GameController.Instance.Explodables.Items.Count(sel => sel.IsObjective);
+            var objectivesComplete =
+                GameController.Instance.Explodables.Items.Count(sel => sel.IsObjective && sel.IsPrimed);
+
             GameController.Instance.SetState(GameState.Scoring);
 
             if (objectivesComplete == objectives && ramScore <= ramMax) {

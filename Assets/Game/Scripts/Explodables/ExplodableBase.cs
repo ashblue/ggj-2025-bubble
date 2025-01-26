@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using GameJammers.GGJ2025.Bootstraps;
 using UnityEngine;
 
@@ -14,24 +15,36 @@ namespace GameJammers.GGJ2025.Explodables {
         [SerializeField]
         bool _isObjective;
 
+        /* Removing this for now. The base poppable can be extended to add colliders or use physics calls.
+         The base poppable will use a sphere cast
         [Tooltip("You can use any explosion shape you want. The trigger area just needs to have a TriggerExplodableTracker on it.")]
         [SerializeField]
-        TriggerExplodableTracker _explosionTrigger;
+        TriggerExplodableTracker _explosionTrigger;*/
 
         public bool AutoExplode => _autoExplode;
         public bool IsObjective => _isObjective;
-        public bool IsPrimed { get; private set; }
+        public bool IsPrimed { get; private set; } // now only used for scoring
 
-        void Start () {
+        protected virtual void Start () {
             _collection = GameController.Instance.Explodables;
             _collection.Add(this);
         }
 
         public void Explode () {
-            StartCoroutine(ExplosionLoop());
+            //StartCoroutine(ExplosionLoop());
+            PopManager.Instance.AddPopToQueue(GetComponent<Poppable>()); // always extended by poppable. Could rework, no time
         }
 
-        IEnumerator ExplosionLoop () {
+        public void Prime () {
+            IsPrimed = true;
+            // Track this globally so we can wait for all explosions to resolve
+            _collection.AddExploding(this);
+            PlayAnimation(); // may hide this for now?
+
+        }
+
+        /*IEnumerator ExplosionLoop () {
+            // this functionality is moving over to PopManager
             // Prevent recursive detonations by setting the primed flag
             IsPrimed = true;
 
@@ -39,23 +52,25 @@ namespace GameJammers.GGJ2025.Explodables {
             _collection.AddExploding(this);
 
             PlayAnimation();
+            // timing is handled by PopManager and poppables now
+            //while (!GetIsAnimationComplete()) {
+            //    yield return null;
+            //}
 
-            while (!GetIsAnimationComplete()) {
-                yield return null;
-            }
-
+            // there is a slight difference in the implication of IsPrimed and Poppable.CanPop
+            // Can Pop will handle this and IsPrimed can be used for scoring
             // Find all explodables inside the explosion area
-            foreach (var target in _explosionTrigger.TrackedObjects) {
-                if (!target.IsPrimed) {
-                    target.Explode();
-                }
-            }
+            //foreach (var target in _explosionTrigger.TrackedObjects) {
+            //    if (!target.IsPrimed) {
+            //        target.Explode();
+            //    }
+            //}
 
             // Inform the game state that this explosion has resolved
-            _collection.RemoveExploding(this);
+            //_collection.RemoveExploding(this);
 
-            ExplosionComplete();
-        }
+            //ExplosionComplete();
+        }*/
 
         void PlayAnimation() {
             OnPlayAnimation();
@@ -67,7 +82,7 @@ namespace GameJammers.GGJ2025.Explodables {
             return true;
         }
 
-        void ExplosionComplete() {
+        protected void ExplosionComplete() {
             OnExplosionComplete();
         }
 

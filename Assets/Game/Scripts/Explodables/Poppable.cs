@@ -2,14 +2,15 @@ using System;
 using System.Collections;
 using System.Linq;
 using DG.Tweening;
+using GameJammers.GGJ2025.Bootstraps;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-namespace GameJammers.GGJ2025.Bubble
+namespace GameJammers.GGJ2025.Explodables
 {
     [RequireComponent(typeof(SphereCollider))]
-    public class Poppable : MonoBehaviour
+    public class Poppable : ExplodableBase
     {
         [SerializeField] private GameObject BubbleTop;
         [SerializeField] private GameObject BubbleBottom;
@@ -33,10 +34,14 @@ namespace GameJammers.GGJ2025.Bubble
 
         private SphereCollider popSphereCollider;
 
+        public GameObject ExplosionHighlightPrefab;
+
+        [NonSerialized] public GameObject ExplosionHighlight;
+
         private Sequence popSequence;
         public bool canPop = true;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        protected override void Start()
         {
             bodyRbody = Body.GetComponent<Rigidbody>();
             bodyCollider = Body.GetComponent<BoxCollider>();
@@ -47,7 +52,15 @@ namespace GameJammers.GGJ2025.Bubble
 
             popSphereCollider = GetComponent<SphereCollider>();
 
+            // highlight sphere and set radius
+            ExplosionHighlight = Instantiate(ExplosionHighlightPrefab, transform);
+            ExplosionHighlight.transform.localScale *= PopRadius;
+            ExplosionHighlight.SetActive(false); // highlight hooks to add
+
+
             //popSequence = DOTween.Sequence();
+
+            base.Start();
         }
 
         // Update is called once per frame
@@ -75,13 +88,14 @@ namespace GameJammers.GGJ2025.Bubble
             popSequence.InsertCallback(distortStart, () => DistortionArea.SetActive(true));
             popSequence.Insert(distortStart, DistortionAreaMat.DOFloat(1, "_DistortStep", distortDuration));
             popSequence.InsertCallback(distortStart, PopOthers);
+            // gravity and explosion force
             popSequence.InsertCallback(disableTime, BodyPhysics);
             // add initial delay (based on bubble vfx)
             popSequence.PrependInterval(0.3f);
 
-            // after pop, pop up the body and apply gravity
-
-            //popSequence.AppendCallback(BodyPhysics);
+            // Inform the game state that this explosion has resolved
+            popSequence.AppendCallback(() => GameController.Instance.Explodables.RemoveExploding(this));
+            popSequence.AppendCallback(ExplosionComplete);
 
         }
 
@@ -92,6 +106,7 @@ namespace GameJammers.GGJ2025.Bubble
 
         public Poppable[] GetPoppablesInRange ()
         {
+            // if you want some other collision behavior, modify this to match (perhaps reference a collider in the child implementation, could even be the highlightObject)
             var others = Physics.OverlapSphere(transform.position, PopRadius, PoppableLayerMask); // consider OverlapSphereNonAlloc
             var otherPoppables = others.Select(sel => sel.GetComponent<Poppable>())
                 .Where(wh => wh != this && wh != null).ToArray();
@@ -112,12 +127,18 @@ namespace GameJammers.GGJ2025.Bubble
         private void OnTriggerEnter(Collider other)
         {
             var otherPoppable = other.GetComponent<Poppable>();
-            if (otherPoppable != null && otherPoppable != this)
-            {
+            if (otherPoppable != null && otherPoppable != this) {
+                otherPoppable.Prime(); // set primed for scoring
                 Sequence startPop = DOTween.Sequence();
-                startPop.AppendInterval(popDelay);
-                startPop.AppendCallback(() => PopManager.Instance.AddPopToQueue(this));
+                //startPop.AppendInterval(popDelay);
+                //startPop.AppendCallback(() => PopManager.Instance.AddPopToQueue(this));
+                // Reporting immediately to ensure all pops known in this frame (to prevent early end state)
+                PopManager.Instance.AddPopToQueue(this);
             }
+        }
+
+        public void ShowHighlight (bool show) {
+            ExplosionHighlight.SetActive(show);
         }
 
         public static Vector3 RandomPointInBounds(Bounds bounds) {
@@ -143,6 +164,11 @@ namespace GameJammers.GGJ2025.Bubble
                 0,
                 Random.Range(bounds.min.z, bounds.max.z)
             );
+        }
+
+        protected override void OnExplosionComplete () {
+            // This hook triggers after the hit objects have been exploded
+            Destroy(gameObject);
         }
     }
 }
