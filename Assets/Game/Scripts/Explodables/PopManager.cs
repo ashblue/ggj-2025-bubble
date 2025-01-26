@@ -1,34 +1,36 @@
 using System.Collections.Generic;
-
+using System.Linq;
 using UnityEngine;
 using UnityEngine.VFX;
+using GameJammers.GGJ2025.FloppyDisks;
 
-namespace GameJammers.GGJ2025.Bubble
+namespace GameJammers.GGJ2025.Explodables
 {
     public class PopManager : MonoBehaviour
     {
         public static PopManager Instance;
 
         public VisualEffect bubbleVfx;
-        public float PopDelayMin = 0.01f;
+        public float PopDelayMin = 0.05f;
         public float PopDelayMax = 0.3f;
         private Queue<Poppable> queuedPops;
+        List<Poppable> pops;
         private float nextPopAllowedTime;
-        
+
         // todo stop vfx if nothing comes through the queue for a time?
-        
-        private void Awake() 
-        { 
-            if (Instance != null && Instance != this) 
-            { 
-                Destroy(this); 
-            } 
-            else 
-            { 
-                Instance = this; 
-            } 
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                Instance = this;
+            }
         }
-        
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -48,6 +50,14 @@ namespace GameJammers.GGJ2025.Bubble
             }
         }
 
+        public void CheckDone () {
+            // reported from poppables
+            // after sequence, check to see if any explodables are still exploding
+            if (queuedPops.Count == 0 && GameController.Instance.Explodables.ItemsExploding.Count == 0) {
+                ScoreBoardController.Instance.Play();
+            }
+        }
+
         public void AddPopToQueue(Poppable poppable)
         {
             if (poppable.canPop && !queuedPops.Contains(poppable))
@@ -56,6 +66,7 @@ namespace GameJammers.GGJ2025.Bubble
                 queuedPops.Enqueue(poppable);
             }
         }
+
 
         public void AddPopToQueue(Poppable[] poppables)
         {
