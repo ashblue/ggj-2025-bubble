@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using GameJammers.GGJ2025.Cameras;
@@ -26,12 +27,17 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         [SerializeField]
         PipToCameraCast _pipToCamera;
 
-        enum State {
+        public bool CanPlace { get; private set; }
+
+        public enum State {
             HandEmpty,
             HoldingDiskRoom,
-            HoldingDiskComputer,
+            //HoldingDiskComputer,
             Lock,
         }
+
+        public event Action<State> StateChanged;
+
 
 
         void Awake () {
@@ -40,7 +46,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
                 Destroy(gameObject);
                 return;
             }
-
+            CanPlace = false;
             _instance = this;
         }
 
@@ -66,6 +72,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
 
         IEnumerator HoldingDiskLoop (FloppyDisk disk) {
             _state = State.HoldingDiskRoom;
+            StateChanged?.Invoke(_state);
 
             _roomDisk = Instantiate(disk.RoomPrefab);
             _computerPreview = Instantiate(disk.ComputerPreviewPrefab);
@@ -75,6 +82,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
                 var mousePos = Mouse.current.position.ReadValue();
                 var worldPos = _roomCamera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, _cursorWorldZLock));
                 _roomDisk.transform.position = worldPos;
+                CanPlace = false;
 
                 // Handle canceling the disk placement
                 if (Mouse.current.rightButton.wasPressedThisFrame) {
@@ -91,6 +99,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
                     // Put the placement prefab in the world
                     if (_pipToCamera.HasPipWorldPosition) {
                         var target = _pipToCamera.LastPipRay.collider.gameObject;
+                        Debug.Log(target.name);
 
                         // Only target ground so we know it's safe to place the prefab there
                         var groundLayer = GameSettings.Current.DiskPlacementLayer;
@@ -104,6 +113,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
                             _computerPreview.SetActive(true);
                             var position = _pipToCamera.LastPipRay.point;
                             ShowDiskPreview(position);
+                            CanPlace = true;
                         }
                     }
                 } else {
@@ -111,19 +121,15 @@ namespace GameJammers.GGJ2025.FloppyDisks {
                     _computerPreview.SetActive(false);
                 }
 
-                if (_computerPreview.activeSelf) {
-                    MouseStates.Instance.ChangeState(MouseStates.State.Hover);
-                    if (Mouse.current.leftButton.wasPressedThisFrame)
-                        SpawnDisk(disk, _computerPreview.transform.position);
+                bool mousePressed = Mouse.current.leftButton.wasPressedThisFrame;
+                if (_computerPreview.activeSelf && mousePressed) {
+                    SpawnDisk(disk, _computerPreview.transform.position);
                 }
-                else if (_roomDisk.activeSelf)
-                    MouseStates.Instance.ChangeState(MouseStates.State.Hover);
-                else
-                    MouseStates.Instance.ChangeState(MouseStates.State.Error);
+
 
                 yield return null;
             }
-            MouseStates.Instance.ChangeState(MouseStates.State.Default);
+
             _loop = null;
         }
 
@@ -143,18 +149,20 @@ namespace GameJammers.GGJ2025.FloppyDisks {
             if (_loop != null) StopCoroutine(_loop);
             if (_roomDisk) Destroy(_roomDisk);
             if (_computerPreview) Destroy(_computerPreview);
-            MouseStates.Instance.ChangeState(MouseStates.State.Default);
             _state = State.HandEmpty;
+            StateChanged?.Invoke(_state);
             _loop = null;
         }
 
         public void Lock () {
             Stop();
             _state = State.Lock;
+            StateChanged?.Invoke(_state);
         }
 
         public void Reset () {
             _state = State.HandEmpty;
+            StateChanged?.Invoke(_state);
         }
     }
 }
