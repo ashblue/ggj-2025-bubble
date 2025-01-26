@@ -323,6 +323,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 779b7e8282087834ebe981061fbcccb7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ed985a3e2b88b1d4787699e915f6162f, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 779b7e8282087834ebe981061fbcccb7, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6125394707407393994, guid: 779b7e8282087834ebe981061fbcccb7, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -398,7 +406,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
