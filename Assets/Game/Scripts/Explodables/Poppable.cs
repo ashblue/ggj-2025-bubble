@@ -64,12 +64,6 @@ namespace GameJammers.GGJ2025.Explodables
             base.Start();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public void Pop()
         {
             // if not primed, then prime // happens for the auto explode ones
@@ -144,10 +138,6 @@ namespace GameJammers.GGJ2025.Explodables
             }
         }
 
-        public void ShowHighlight (bool show) {
-            ExplosionHighlight.SetActive(show);
-        }
-
         public static Vector3 RandomPointInBounds(Bounds bounds) {
             return new Vector3(
                 Random.Range(bounds.min.x, bounds.max.x),
@@ -178,6 +168,10 @@ namespace GameJammers.GGJ2025.Explodables
             //Destroy(gameObject);
             GameController.Instance.Explodables.Remove(this);
             // TODO Schedule cleanup?
+        }
+
+        public override void ToggleView (bool toggle) {
+            ExplosionHighlight.SetActive(toggle);
         }
     }
 }

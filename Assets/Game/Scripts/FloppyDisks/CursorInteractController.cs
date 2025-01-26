@@ -33,6 +33,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
             Lock,
         }
 
+
         void Awake () {
             if (_instance) {
                 Debug.LogWarning("Multiple FloppyDiskControllers detected. Destroying this one.");
@@ -135,7 +136,9 @@ namespace GameJammers.GGJ2025.FloppyDisks {
         void Stop () {
             if (_loop != null) StopCoroutine(_loop);
             if (_roomDisk) Destroy(_roomDisk);
-            if (_computerPreview) Destroy(_computerPreview);
+            if (_computerPreview) {
+                Destroy(_computerPreview);
+            }
             _state = State.HandEmpty;
             _loop = null;
         }
