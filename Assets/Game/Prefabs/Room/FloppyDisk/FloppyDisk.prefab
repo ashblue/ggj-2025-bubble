@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomPrefab: {fileID: 4678134488776663805, guid: 19740b1e05495c04499a23b2f8306618, type: 3}
   _computerPreviewPrefab: {fileID: 3223341956226152488, guid: c54b62f9a70547648923d5d748685543, type: 3}
-  _computerPrefab: {fileID: 3223341956226152488, guid: e65cc273259307b40810fcabdcaaf59c, type: 3}
+  _computerPrefab: {fileID: 806826302353730073, guid: c52bb8fffe16b9b49a9359371b00ff8a, type: 3}
 --- !u!65 &5943409981399373201
 BoxCollider:
   m_ObjectHideFlags: 0

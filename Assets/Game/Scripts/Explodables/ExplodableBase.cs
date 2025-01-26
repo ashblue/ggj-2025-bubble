@@ -1,4 +1,3 @@
-﻿using System.Collections;
 using GameJammers.GGJ2025.FloppyDisks;
 using UnityEngine;
 
@@ -14,47 +13,26 @@ namespace GameJammers.GGJ2025.Explodables {
         [SerializeField]
         bool _isObjective;
 
-        [Tooltip("You can use any explosion shape you want. The trigger area just needs to have a TriggerExplodableTracker on it.")]
-        [SerializeField]
-        TriggerExplodableTracker _explosionTrigger;
-
         public bool AutoExplode => _autoExplode;
         public bool IsObjective => _isObjective;
-        public bool IsPrimed { get; private set; }
+        public bool IsPrimed { get; private set; } // now only used for scoring
 
-        void Start () {
+        protected virtual void Start () {
             _collection = GameController.Instance.Explodables;
             _collection.Add(this);
         }
 
         public void Explode () {
-            StartCoroutine(ExplosionLoop());
+            //StartCoroutine(ExplosionLoop());
+            PopManager.Instance.AddPopToQueue(GetComponent<Poppable>()); // always extended by poppable. Could rework, no time
         }
 
-        IEnumerator ExplosionLoop () {
-            // Prevent recursive detonations by setting the primed flag
+        public void Prime () {
             IsPrimed = true;
-
             // Track this globally so we can wait for all explosions to resolve
             _collection.AddExploding(this);
+            PlayAnimation(); // may hide this for now?
 
-            PlayAnimation();
-
-            while (!GetIsAnimationComplete()) {
-                yield return null;
-            }
-
-            // Find all explodables inside the explosion area
-            foreach (var target in _explosionTrigger.TrackedObjects) {
-                if (!target.IsPrimed) {
-                    target.Explode();
-                }
-            }
-
-            // Inform the game state that this explosion has resolved
-            _collection.RemoveExploding(this);
-
-            ExplosionComplete();
         }
 
         void PlayAnimation() {
@@ -67,14 +45,14 @@ namespace GameJammers.GGJ2025.Explodables {
             return true;
         }
 
-        void ExplosionComplete() {
+        protected void ExplosionComplete() {
             OnExplosionComplete();
         }
 
         protected virtual void OnExplosionComplete() {}
 
         protected virtual void OnDestroy () {
-            _collection.Remove(this);
+            _collection.Cleanup(this);
         }
     }
 }

@@ -1,7 +1,6 @@
-using GameJammers.GGJ2025.Bubble;
 using UnityEngine;
 
-namespace GameJammers.GGJ2025.Bubble{
+namespace GameJammers.GGJ2025.Explodables{
     public class DoPop : MonoBehaviour
     {
         Poppable thisPoppable;

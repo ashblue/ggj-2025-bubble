@@ -27,21 +27,27 @@ namespace GameJammers.GGJ2025.FloppyDisks {
 
             // Get all of the primers
             var primers = new List<IExplodable>();
-            var objectives = 0;
+            // not handled here now
+            //var objectives = 0;
             foreach (var explode in _explodables.Items) {
-                if (explode.IsObjective) {
-                    objectives++;
-                }
+                //if (explode.IsObjective) {
+                //    objectives++;
+                //}
 
                 if (explode.AutoExplode) {
                     primers.Add(explode);
+
                 }
             }
 
-            _runner.StartCoroutine(ChainReaction(primers, objectives));
+            foreach (var primer in primers) {
+                primer.Explode();
+            }
+
+            //_runner.StartCoroutine(ChainReaction(primers, objectives));
         }
 
-        IEnumerator ChainReaction (List<IExplodable> primers, int objectives) {
+        /*IEnumerator ChainReaction (List<IExplodable> primers, int objectives) {
             // Detonate all primers
             foreach (var item in primers) {
                 item.Explode();
@@ -61,9 +67,9 @@ namespace GameJammers.GGJ2025.FloppyDisks {
             }
 
             // Report the final level score to the score board
-            var ramMax = _game.Ram.Max;
-            var ramScore = _game.Ram.Current;
-            ScoreBoardController.Instance.Play(objectives, objectivesComplete, ramMax, ramScore);
-        }
+            // get from scoreboard var ramMax = _game.Ram.Max;
+            // get from scoreboard var ramScore = _game.Ram.Current;
+            // handled by pop manager now ScoreBoardController.Instance.Play(objectives, objectivesComplete, ramMax, ramScore);
+        }*/
     }
 }

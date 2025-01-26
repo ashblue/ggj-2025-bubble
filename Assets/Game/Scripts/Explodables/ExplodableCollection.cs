@@ -4,6 +4,7 @@ namespace GameJammers.GGJ2025.Explodables {
     public class ExplodableCollection {
         readonly List<IExplodable> _items = new();
         readonly List<IExplodable> _itemsExploding = new();
+        readonly List<IExplodable> _debris = new();
 
         public IReadOnlyList<IExplodable> Items => _items;
         public IReadOnlyList<IExplodable> ItemsExploding => _itemsExploding;
@@ -14,6 +15,11 @@ namespace GameJammers.GGJ2025.Explodables {
 
         public void Remove (IExplodable item) {
             _items.Remove(item);
+            _debris.Add(item);
+        }
+
+        public void Cleanup (IExplodable item) {
+            _debris.Remove(item);
         }
 
         public void AddExploding (IExplodable item) {

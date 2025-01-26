@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1086074014787898541}
   - component: {fileID: 4377519469867066365}
   - component: {fileID: 7586266741385105379}
+  - component: {fileID: 6845565974750257170}
+  - component: {fileID: 8698978496451817106}
   m_Layer: 6
   m_Name: Decoy
   m_TagString: Untagged
@@ -51,7 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _autoExplode: 0
   _isObjective: 0
-  _explosionTrigger: {fileID: 7016125291947224446}
   _explosionDelay: 0.2
   _explosionGraphic: {fileID: 7327449326115279292}
   _explosionDuration: 0.5
@@ -103,6 +104,54 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.5103986, z: 1}
   m_Center: {x: 0, y: 0.7551993, z: 0}
+--- !u!135 &6845565974750257170
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3223341956226152488}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8698978496451817106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3223341956226152488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6931bffd2fbe3b4eab2f86999eb1e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _autoExplode: 0
+  _isObjective: 0
+  BubbleTop: {fileID: 0}
+  BubbleBottom: {fileID: 0}
+  BubbleArms: {fileID: 0}
+  Body: {fileID: 0}
+  DistortionArea: {fileID: 0}
+  PostPopImpulseForce: 5
+  PopRadius: 5
+  popDelay: 0.05
+  PoppableLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  ExplosionHighlightPrefab: {fileID: 0}
+  canPop: 1
 --- !u!1 &7327449326115279292
 GameObject:
   m_ObjectHideFlags: 0
