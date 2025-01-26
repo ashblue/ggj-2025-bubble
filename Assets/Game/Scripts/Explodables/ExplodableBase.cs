@@ -1,7 +1,6 @@
 using System.Collections;
 using GameJammers.GGJ2025.FloppyDisks;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace GameJammers.GGJ2025.Explodables {
     public abstract class ExplodableBase : MonoBehaviour, IExplodable, ITacticalView {

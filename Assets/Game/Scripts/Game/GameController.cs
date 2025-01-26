@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using GameJammers.GGJ2025.Explodables;
-using GameJammers.GGJ2025.FloppyDisks;
 using GameJammers.GGJ2025.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
@@ -75,7 +74,6 @@ namespace GameJammers.GGJ2025.FloppyDisks {
             Instance = this;
             _loadingScreen.gameObject.SetActive(true);
             _exploder = new ExplodeController(this, Explodables, this);
-            IsTacticalViewEnabled = true;
             _toggleTacticalViewAction = InputSystem.actions.FindAction("ToggleTacticalView");
             _toggleTacticalViewAction.started += OnTacticalModeToggleOn;
             _toggleTacticalViewAction.canceled += OnTacticalModeToggleOff;
