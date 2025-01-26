@@ -4,6 +4,12 @@ using UnityEngine.Events;
 
 namespace GameJammers.GGJ2025.FloppyDisks {
     public class FloppyDisk : MonoBehaviour {
+        [Tooltip("How much RAM this floppy disk adds to the computer")]
+        [SerializeField]
+        int _ram = 1;
+
+        [Header("Prefabs")]
+
         [Tooltip("The prefab used to represent holding the floppy disk in the room")]
         [SerializeField]
         GameObject _roomPrefab;
@@ -26,6 +32,8 @@ namespace GameJammers.GGJ2025.FloppyDisks {
 
         private Outline _outline;
 
+
+        public int Ram => _ram;
 
         void Start () {
             CursorInteractController.Instance.Add(this);

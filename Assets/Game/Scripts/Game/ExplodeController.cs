@@ -2,10 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using GameJammers.GGJ2025.Explodables;
-using GameJammers.GGJ2025.FloppyDisks;
 using GameJammers.GGJ2025.Utilities;
 
-namespace GameJammers.GGJ2025.Bootstraps {
+namespace GameJammers.GGJ2025.FloppyDisks {
     [Serializable]
     public class ExplodeController {
         GameController _game;

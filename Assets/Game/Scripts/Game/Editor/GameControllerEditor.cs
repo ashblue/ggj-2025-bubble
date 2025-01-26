@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace GameJammers.GGJ2025.Bootstraps {
+namespace GameJammers.GGJ2025.FloppyDisks {
     [CustomEditor(typeof(GameController))]
     public class GameControllerEditor : Editor {
         public override void OnInspectorGUI() {
