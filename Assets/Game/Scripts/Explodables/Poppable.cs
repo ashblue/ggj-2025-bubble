@@ -102,6 +102,7 @@ namespace GameJammers.GGJ2025.Explodables
             // Inform the game state that this explosion has resolved
             popSequence.AppendCallback(() => GameController.Instance.Explodables.RemoveExploding(this));
             popSequence.AppendCallback(ExplosionComplete);
+            popSequence.AppendInterval(1f);
             popSequence.AppendCallback(PopManager.Instance.CheckDone);
 
         }
