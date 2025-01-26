@@ -26,6 +26,9 @@
 # Visual Studio cache directory
 .vs/
 
+# Rider IDE
+.idea/
+
 # Gradle cache directory
 .gradle/
 
@@ -71,3 +74,34 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# IDEs
+.vsconfig
+/.idea
+/.vscode
+
+*.DS_Store
+
+# Probuilder settings files. Are these safe to ignore??? https://discussions.unity.com/t/probuilder-settings-and-git/757804/6
+# ProjectSettings/Packages/com.unity.probuilder/Settings.json
+
+
+### FMOD Unity Integration ###
+# Never ignore DLLs in the FMOD subfolder.
+!/[Aa]ssets/Plugins/FMOD/**/lib/*
+FMod/ggj_project/.cache
+
+# Don't ignore images and gizmos used by FMOD in the Unity Editor.
+!/[Aa]ssets/Gizmos/FMOD/*
+!/[Aa]ssets/Editor Default Resources/FMOD/*
+
+# Ignore the Cache folder since it is updated locally.
+/[Aa]ssets/Plugins/FMOD/Cache/*
+
+# Ignore bank files in the StreamingAssets folder.
+/[Aa]ssets/StreamingAssets/**/*.bank
+/[Aa]ssets/StreamingAssets/**/*.bank.meta
+
+# If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
+# Log files can be ignored.
+fmod_editor.log

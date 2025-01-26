@@ -1,0 +1,14 @@
+[*.{cs,vb}] 
+
+# Standardize all file details
+charset = utf-8
+end_of_line = crlf
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+# Dotnet and CSharp
+csharp_new_line_before_open_brace = none
+csharp_space_between_method_declaration_name_and_open_parenthesis = true
+dotnet_style_require_accessibility_modifiers = omit_if_default:suggestion

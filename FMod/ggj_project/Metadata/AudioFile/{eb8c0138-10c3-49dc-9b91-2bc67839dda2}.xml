@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{eb8c0138-10c3-49dc-9b91-2bc67839dda2}">
+		<property name="assetPath">
+			<value>Music/Bubble GGJ - Level Theme #1 (Sus Theme).mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>147.74857142857144</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e207a1b0-ac4b-492f-ab98-94711a90da70}</destination>
+		</relationship>
+	</object>
+</objects>
