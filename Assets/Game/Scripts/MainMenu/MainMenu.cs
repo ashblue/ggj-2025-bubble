@@ -42,7 +42,7 @@ namespace GameJammers.GGJ2025.UI {
 
         public void MenuSound () {
             Debug.Log ("MenuSound");
-            FMODUnity.RuntimeManager.PlayOneShot("Events:/MenuNav");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/MenuNav");
         }
 
         public void OnResumeButtonPressed () {
