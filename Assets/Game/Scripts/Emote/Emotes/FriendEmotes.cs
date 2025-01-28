@@ -27,26 +27,25 @@ namespace GameJammers.GGJ2025.Emote.Emotes {
             Behaviors.Add((0.1f, new ToPose("Look_Down", 2f, parent:asleep_awake)));
             Behaviors.Add((0.1f, new ToPose("Look_Right", 2f, parent:asleep_awake)));
 
-
+            PassTargetsToBehaviors(); // somewhat redundant with parent being set above, but prevents any missed behaviors
 
         }
 
         public override void Update () {
             // rarely, kick off the swing animation
-            if (_currentSequence == null || !_currentSequence.IsPlaying()) {
-                if (Random.value < 0.05f) {
-                    var behavior = new Blink(_neutralEyePose, 4) {
-                        targetTransform = this.transform,
-                        LeftEye = this.LeftEye,
-                        RightEye = this.RightEye,
-                    };
-                    animator.SetTrigger("Swing");
-                }
-                else {
-                    var nextBehavior = NextBehavior();
-                    _currentSequence = nextBehavior.BuildSequence();
-                }
-
+            if (!CanStartNextSequence()) return;
+            if (Random.value < 0.05f) {
+                var behavior = new Blink(_neutralEyePose, 4) {
+                    targetTransform = this.transform,
+                    LeftEye = this.LeftEye,
+                    RightEye = this.RightEye,
+                };
+                animator.SetTrigger("Swing");
+                _currentSequence = behavior.BuildSequence();
+            }
+            else {
+                var nextBehavior = NextBehavior();
+                _currentSequence = nextBehavior.BuildSequence();
             }
         }
     }

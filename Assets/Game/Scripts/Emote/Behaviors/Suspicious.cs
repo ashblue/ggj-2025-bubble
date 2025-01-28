@@ -2,7 +2,7 @@ using DG.Tweening;
 
 namespace GameJammers.GGJ2025.Emote.Behaviors {
     public class Suspicious : EmoteBehavior {
-        public Suspicious (EmoteBehavior parent) : base(parent) {
+        public Suspicious (EmoteBehavior parent = null) : base(parent) {
 
         }
 
@@ -20,6 +20,7 @@ namespace GameJammers.GGJ2025.Emote.Behaviors {
             var lookLeft = new ToPose("Look_Left", 0.3f, new TransformMask(true, false, false), Ease.OutCubic, parent: this);
             emoteSequence.Append(lookLeft.BuildSequence());
             emoteSequence.AppendInterval(0.8f);
+            emoteSequence.Append(lookLeft.BuildSequence()); // repeating to force the delay interval to apply
 
             return emoteSequence;
         }

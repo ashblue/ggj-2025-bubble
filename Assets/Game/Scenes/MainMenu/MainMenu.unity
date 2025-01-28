@@ -2060,7 +2060,8 @@ MonoBehaviour:
   LeftEye: {fileID: 1613668441}
   RightEye: {fileID: 480176383}
   animator: {fileID: 1047966799}
-  WaitWeight: 0.1
+  WaitWeight: 0.2
+  isWaiting: 0
 --- !u!95 &1047966799 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4003684630130995299, guid: 96ccab491a260b740a0a11e1fea354ba, type: 3}
