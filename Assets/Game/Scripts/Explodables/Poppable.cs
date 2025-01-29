@@ -43,12 +43,17 @@ namespace GameJammers.GGJ2025.Explodables
 
         public event Action OnPop;
 
-        [Header("Gizmo")] public bool drawWireframeOnly = true;
+
 
         private Sequence popSequence;
         public bool canPop = true;
 
         public override bool IsPoppedSuccess => !canPop;
+
+        [Header("Gizmo")]
+        [SerializeField] bool drawWireframeOnly = true;
+
+        [SerializeField] bool drawOnlySelected = false;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         protected override void Start()
@@ -194,8 +199,18 @@ namespace GameJammers.GGJ2025.Explodables
         }
 
         void OnDrawGizmos () {
-            Gizmos.color = Color.red;
+            if (!drawOnlySelected) {
+                DrawGizmos();
+            }
+        }
 
+        void OnDrawGizmosSelected () {
+            if (drawOnlySelected) {
+                DrawGizmos();
+            }
+        }
+
+        protected virtual void DrawGizmos () {
             if (drawWireframeOnly) {
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireSphere(transform.position, PopRadius);

@@ -31,12 +31,9 @@ namespace GameJammers.GGJ2025.Emote.Behaviors {
                 var singleBlink = new SingleBlink(
                     returnPose: neutralPose,
                     duration: Random.Range(BlinkBaseSpeed * 0.5f, BlinkBaseSpeed * 1.5f),
-                    ease: EaseFunction
-                ) {
-                    targetTransform = this.targetTransform,
-                    LeftEye = this.LeftEye,
-                    RightEye = this.RightEye,
-                };
+                    ease: EaseFunction,
+                    parent: this
+                );
                 // neutral for random seconds
                 SequenceInfo.additionalBehaviors.Add((startTime, singleBlink));
                 // blink

@@ -20,15 +20,24 @@ namespace GameJammers.GGJ2025.Emote {
 
         public virtual void Awake () {
             Behaviors = new List<(float, EmoteBehavior)>() {
-                (WaitWeight, new WaitSequence(5f))
+                (WaitWeight, new WaitSequence(5f) {targetTransform = transform, LeftEye = this.LeftEye, RightEye = this.RightEye})
             };
+            PassTargetsToBehaviors();
+        }
+
+        protected void PassTargetsToBehaviors () {
+            // meant to be called after awake
+            Behaviors.ForEach(sel => {
+                sel.behavior.targetTransform = this.transform;
+                sel.behavior.LeftEye = this.LeftEye;
+                sel.behavior.RightEye = this.RightEye;
+            });
         }
 
         public virtual void Update () {
-            if (!_stopped && (_currentSequence == null || !_currentSequence.IsPlaying())) {
-                var behavior = NextBehavior();
-                _currentSequence = behavior.BuildSequence();
-            }
+            if (!CanStartNextSequence()) return;
+            var behavior = NextBehavior();
+            _currentSequence = behavior.BuildSequence();
         }
 
         public EmoteBehavior NextBehavior () {
@@ -45,13 +54,17 @@ namespace GameJammers.GGJ2025.Emote {
             return null;
         }
 
+        public bool CanStartNextSequence () {
+            return !_stopped && (_currentSequence == null || !_currentSequence.IsActive() ||
+                                 _currentSequence.IsComplete());
+        }
+
         public void ForceBehavior (EmoteBehavior behavior) {
             KillBehaviors();
             _currentSequence = behavior.BuildSequence();
         }
 
         public void KillBehaviors () {
-            Debug.Log($"Killing behaviors:");
             _stopped = true;
             _currentSequence.Kill();
         }

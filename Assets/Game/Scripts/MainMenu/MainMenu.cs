@@ -1,3 +1,4 @@
+using GameJammers.GGJ2025.Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,6 +20,8 @@ namespace GameJammers.GGJ2025.UI {
             _resumeButton.gameObject.SetActive(LevelsCleared > 0);
             _startMenu.SetActive(true);
             _creditsMenu.SetActive(false);
+
+            MusicManager.Instance.UpdateTrack(1);
         }
 
         public void LoadGameScene (int level) {
@@ -31,16 +34,30 @@ namespace GameJammers.GGJ2025.UI {
             loading.completed += OnLoaded;
         }
 
-        public void OnStartButtonPressed () => LoadGameScene(0);
+        public void OnStartButtonPressed () {
+            MusicManager.Instance.UpdateTrack(1);
+            LoadGameScene(0);
 
-        public void OnResumeButtonPressed () => LoadGameScene(LevelsCleared);
+        }
+
+        public void MenuSound () {
+            Debug.Log ("MenuSound");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/MenuNav");
+        }
+
+        public void OnResumeButtonPressed () {
+            MenuSound();
+            LoadGameScene(LevelsCleared);
+        }
 
         public void OnCreditsButtonPressed () {
+            MenuSound();
             _startMenu.SetActive(false);
             _creditsMenu.SetActive(true);
         }
 
         public void OnReturnFromCreditsPressed () {
+            MenuSound();
             _startMenu.SetActive(true);
             _creditsMenu.SetActive(false);
         }

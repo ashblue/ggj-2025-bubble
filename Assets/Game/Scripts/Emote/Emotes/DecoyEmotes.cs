@@ -26,6 +26,8 @@ namespace GameJammers.GGJ2025.Emote.Emotes {
             Behaviors.Add((0.1f, new ToPose("Look_Up", 2f, parent:asleep_awake)));
             Behaviors.Add((0.1f, new ToPose("Look_Down", 2f, parent:asleep_awake)));
             Behaviors.Add((0.2f, new ToPose("Look_Right", 2f, parent:asleep_awake)));
+
+            PassTargetsToBehaviors();
         }
         public override EmoteBehavior GetDeadPose () {
             var behavior = new EmoteBehavior() {

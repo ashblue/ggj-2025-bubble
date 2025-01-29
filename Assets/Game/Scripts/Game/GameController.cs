@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameJammers.GGJ2025.Audio;
 using GameJammers.GGJ2025.Explodables;
 using GameJammers.GGJ2025.Utilities;
 using UnityEngine;
@@ -161,6 +162,7 @@ namespace GameJammers.GGJ2025.FloppyDisks {
             // Load the level
             var level = SceneManager.LoadSceneAsync(levelPath, LoadSceneMode.Additive);
             _currentLevelPath = levelPath;
+            MusicManager.Instance.UpdateTrack(_level == 0 ? 2 : 3);
 
             yield return level;
         }
